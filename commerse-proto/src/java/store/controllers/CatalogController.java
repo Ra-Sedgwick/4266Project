@@ -5,8 +5,10 @@
  */
 package store.controllers;
 
+import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.Product;
+import store.business.User;
 import store.util.ProductDB;
 
 /**
@@ -25,6 +28,7 @@ import store.util.ProductDB;
 public class CatalogController extends HttpServlet {
 
     ProductDB db = new ProductDB();
+
     
     public void doGet(HttpServletRequest request, 
             HttpServletResponse response)
@@ -42,6 +46,7 @@ public class CatalogController extends HttpServlet {
         if (requestProductCode != null) {
             
             Product p = db.getProduct(requestProductCode); 
+            ArrayList<User> users = UserDB.getUsers();
             
             if (p != null) {
                 url = "/item.jsp";

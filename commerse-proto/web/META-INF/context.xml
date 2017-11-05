@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/commerse-proto"/>
+<Context path="/commerse-proto">
+     <Resource 
+      auth="Container" 
+      driverClassName="com.mysql.jdbc.Driver" 
+      logAbandoned="true" maxActive="100" 
+      maxIdle="30" 
+      maxWait="10000" 
+      name="jdbc/just_pedals" 
+      password="5535" 
+      removeAbandoned="true" 
+      removeAbandonedTimeout="60" 
+      type="javax.sql.DataSource" 
+      url="jdbc:mysql://localhost:3306/just_pedals" 
+      username="root"/>
+</Context>
+ 
