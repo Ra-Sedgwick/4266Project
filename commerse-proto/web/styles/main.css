@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 15, 2017, 9:04:22 AM
+    Author     : robert
+*/
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    font-size: 1.2em;
+}
+
+header {
+    text-align: center;
+    background-color: lightslategrey;
+    display: Inline;
+    margin-bottom: 100px;
+}
+
+#login-msg {
+    float: right;
+    
+}
+
+header > h1 > img {
+    margin-right: 30px;
+}
+
+
+nav {
+    background-color: lightsteelblue;
+    text-align: center;
+    margin: 10px;
+    border-style: solid;   
+}
+
+nav > a {
+    margin: 0px 10px 0px 10px;
+    font-size: 1.5em;
+
+}
+
+main {
+    display: flex;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 100px 20% 10px;
+    margin: 10px;
+    border-style: solid;
+    width: 15%;
+    height: 100%;
+    background-color: lightgrey;
+   
+}
+
+aside > a {
+    margin: 10px;
+    font-size: 1.25em;
+
+}
+
+section {
+    margin: 10px;
+    width: 85%;
+}
+
+figure {
+    display: flex;
+    
+}
+
+figcaption {
+    margin-left: 20px;
+}
+
+.item-button {
+    margin-left: 40px;
+    margin-bottom: 10px;
+    font-size: 1.15em;
+}
+
+
+table {
+    text-align: right;
+    
+}
+
+td {
+    padding: 10px;
+}
+
+
+table > tbody > tr > td > form > input {
+    text-align: right;
+    width: 30px;
+}
+
+#cart-container {
+    width: 35%
+}
+
+.cart-button {
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
+
+.cart-button button {
+    margin: 4px;
+    font-size: 1em;
+    width: 120px; 
+}
+
+
