@@ -43,6 +43,7 @@ public class ProductDB {
                         product.setCatalogCategory(rs.getString("CatelogCategory"));
                         product.setDescription(rs.getString("Description"));
                         product.setPrice(rs.getInt("Price"));
+                        product.setImageURL(rs.getString("ImageURL"));
                         products.add(product);
                 } while (rs.next());
             }
@@ -63,13 +64,15 @@ public class ProductDB {
             String name, 
             String category,
             double price,
-            String description) {
+            String description, 
+            String imageURL) {
         
         Product p = new Product();
         p.setProductName(name);
         p.setCatalogCategory(category);
         p.setPrice(price);
         p.setDescription(description);
+        p.setImageURL(imageURL);
         
         addProduct(p);
     }
@@ -88,7 +91,7 @@ public class ProductDB {
             ps.setString(2, product.getCatalogCategory());
             ps.setString(3, product.getDescription());
             ps.setDouble(4, product.getPrice());
-            ps.setString(5, "C:\\Users\\rased\\projects\\4166Project\\commerse-proto\\web\\images\\pedal.jpg");
+            ps.setString(5, product.getImageURL());
             
             return ps.executeUpdate();
             
@@ -126,6 +129,7 @@ public class ProductDB {
                         product.setCatalogCategory(rs.getString("CatelogCategory"));
                         product.setDescription(rs.getString("Description"));
                         product.setPrice(rs.getInt("Price"));
+                        product.setImageURL(rs.getString("ImageURL"));
                         products.add(product);
                         
                 } while (rs.next());
@@ -168,6 +172,7 @@ public class ProductDB {
                 product.setCatalogCategory(rs.getString("CatelogCategory"));
                 product.setDescription(rs.getString("Description"));
                 product.setPrice(rs.getInt("Price"));
+                product.setImageURL(rs.getString("ImageURL"));
             }
             
             return product;

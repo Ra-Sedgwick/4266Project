@@ -3,11 +3,13 @@
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
             <h2>Current Item</h2>
+            
             <figure>
-                <img src='images/CrankBrothersClipless.jpg' style='height:200px'>
+                <img src=${product.getImageURL()} style='height:200px'>
                 <figcaption>
                     <h3>${product.getProductName()}: ${product.getPriceCurrencyFormat()}</h3>
                     <p>${product.getDescription()}</p>
+                    
                 </figcaption>
             </figure>
             <form action="catalog.jsp">

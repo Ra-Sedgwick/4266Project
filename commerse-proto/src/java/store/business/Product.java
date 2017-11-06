@@ -19,8 +19,17 @@ public class Product implements Serializable {
     private String catalogCategory;
     private String description; 
     private double price;
+    private String imageURL;
     
     public Product() {}
+    
+    public void setImageURL(String _imageURL) {
+        imageURL = _imageURL;
+    }
+    
+    public String getImageURL() {
+        return imageURL;
+    }
     
     public String getStringProductCode() {
         return Integer.toString(productCode);
@@ -72,10 +81,5 @@ public class Product implements Serializable {
         return currency.format(price);
     }
     
-    public String getImageURL() {
-        //String imageURL = "images/" + code + ".png";
-        //return imageURL;
-
-        return "/images/pedal.jpg";
-    }
+    
 }

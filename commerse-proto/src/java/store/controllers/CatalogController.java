@@ -31,6 +31,8 @@ public class CatalogController extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
         
+        List<Product> pp = ProductDB.getAllProducts();
+        
         String url = "/catalog.jsp";
         HttpSession session = request.getSession();
         String requestProductCode = request.getParameter("productCode");
