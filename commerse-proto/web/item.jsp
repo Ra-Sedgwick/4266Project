@@ -22,6 +22,9 @@
             
         </section>
     </main>
+                
+<jsp:include page="includes/viewSessions.jsp" />
+
 <jsp:include page="includes/footer.jsp" />
 
 

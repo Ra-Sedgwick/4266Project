@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -36,36 +37,33 @@ import store.util.UserDB;
 
 public class OrderController extends HttpServlet {
 
-    //ProductDB db = new ProductDB();
-    //UserDB userDB = new UserDB();
-    Cart cart = new Cart();
     List<Product> products = DBProduct.getProducts();
-    
-    int x = 10;
+    Cart cart;
+    Cart requestCart;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         
-        cart.setOrderItems(new ArrayList<OrderItem>());
         
         String url = "/order.jsp";
         HttpSession session = request.getSession();
         String requestURI = request.getRequestURI();
-        Cart requestCart = (Cart) session.getAttribute("theShoppingCart");
+        requestCart = (Cart) session.getAttribute("theShoppingCart");
         String[] str_quantity = null;
         String[] productList = null;
         
-        //String requestCart = request.getParameter("theShoppingCart");
+
+        
         
         if (requestCart == null) {
-            session.setAttribute("theShoppingCart", cart);
-        }
-        else {
-            cart = requestCart;
-            productList = (String[]) session.getAttribute("productList");
-            str_quantity = (String[]) session.getAttribute("quantities");
+            cart = new Cart();
+            cart.setOrderItems();
+            
+            
+            productList = request.getParameterValues("productList[]");
+            str_quantity = request.getParameterValues("quantity[]");
             
             for (int i = 0; i < productList.length; i++) {
                 for (Product p : products) {                    
@@ -75,6 +73,25 @@ public class OrderController extends HttpServlet {
                     }
                 }
             }
+            session.setAttribute("theShoppingCart", cart);
+        }
+        else {
+            
+            ;
+            
+            productList = request.getParameterValues("productList[]");
+            str_quantity = request.getParameterValues("quantity[]");
+            
+            for (int i = 0; i < productList.length; i++) {
+                for (Product p : products) {                    
+                    if (p.getStringProductCode().equals(productList[i])){
+                        int q = Integer.parseInt(str_quantity[i]);
+                        requestCart.addItem(p, q);
+                    }
+                }
+            }
+            
+            session.setAttribute("theShoppingCart", requestCart);
         }
         
         String action = request.getParameter("action");

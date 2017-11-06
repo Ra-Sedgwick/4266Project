@@ -18,7 +18,22 @@ public class Cart {
     
     public Cart() {};
     
+    public int Count() {
+        return orderItems.size();
+    }
     
+   public static Cart copy(Cart _cart) {
+       Cart cart = new Cart();
+       cart.setOrderItems();
+       List<OrderItem> oi = _cart.getOrderItems();
+       
+       for (int i = 0; i < _cart.Count(); i++) {
+           OrderItem o = oi.get(i);
+           cart.addItem(o.getProduct(), o.getQuantity());
+       }
+       
+       return cart;
+   }
     
     public void addItem(Product product, int quantity) {
         
@@ -72,8 +87,8 @@ public class Cart {
         return orderItems;
     }
     
-    public void setOrderItems(ArrayList<OrderItem> items) {
-        orderItems = items; 
+    public void setOrderItems() {
+        this.orderItems = new ArrayList<OrderItem>();
     }
     
     public void emptyCart() {
