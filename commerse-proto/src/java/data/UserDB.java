@@ -64,4 +64,41 @@ public class UserDB {
             pool.freeConnection(connection);
         }
     }    
+    
+    public static User getUser(String id) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM User "
+                + "WHERE UserId = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            User user = null;
+            
+            if (rs.first()) {
+                user = new User();
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setEmail(rs.getString("Email"));
+                user.setAddressField_1(rs.getString("Address_1"));
+                user.setAddressField_2(rs.getString("Address_2"));
+                user.setCity(rs.getString("City"));
+                user.setState(rs.getString("State"));
+                user.setPostCode(rs.getString("Postal_Code"));
+                user.setCountry(rs.getString("Country"));
+            }
+            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
 }

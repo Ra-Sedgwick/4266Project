@@ -49,7 +49,7 @@ public class CatalogController extends HttpServlet {
             Product p = db.getProduct(requestProductCode); 
             ArrayList<User> users = UserDB.getUsers();
             Product pp = DBProduct.getProduct("3");
-
+            User u = UserDB.getUser("1");
             ArrayList<Product> products = DBProduct.getProducts();
             
             if (p != null) {
