@@ -37,23 +37,29 @@ public class Cart {
     
     public void addItem(Product product, int quantity) {
         
-        boolean isNew = true; 
+        //boolean isNew = true; 
+        ArrayList<OrderItem> toRemove = new ArrayList<OrderItem>();
         
         //Check for existing product
-        for (OrderItem i : orderItems) {
-            if (i.getProduct().equals(product)) {
-                i.setQuantity(quantity);
-                isNew = false;
-            }
+        if (this.hasItem(product)){
+            this.removeItem(product);
+            
         }
         
-        // Add New product if not found
-        if (isNew) {
-            OrderItem item = new OrderItem();
-            item.setProduct(product);
-            item.setQuantity(quantity);
-            orderItems.add(item);
+        if (quantity > 0){
+                OrderItem i = new OrderItem();
+                i.setProduct(product);
+                i.setQuantity(quantity);
+                orderItems.add(i);
+            }
+    }
+    
+    public boolean hasItem(Product product) {
+        for (OrderItem i : orderItems) {
+            if (i.getProduct().getProductCode() == product.getProductCode())
+                return true;
         }
+        return false;
     }
     
     public OrderItem getItem(Product product) {
