@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,15 @@
         <link rel="stylesheet" href="styles/main.css">
     </head>
     <header>
-        <p id="login-msg">Not logged in...</p>
+        <c:choose>
+            <c:when test="${theUser.email != null}">
+                <p id="login-msg">${theUser.email}"</p>
+            </c:when>
+            <c:otherwise>
+                <p id="login-msg">Not logged in...</p>
+            </c:otherwise>
+        </c:choose>
+<!--                <p id="login-msg">${theUser.email}</p>-->
         <h1><img src='pedal.jpg' alt="" style="width:100px">Just Bike Pedals!</h1>   
     </header>
     <nav>
