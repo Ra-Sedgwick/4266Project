@@ -5,6 +5,7 @@
  */
 package store.controllers;
 
+import data.DBProduct;
 import data.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +48,7 @@ public class CatalogController extends HttpServlet {
             
             Product p = db.getProduct(requestProductCode); 
             ArrayList<User> users = UserDB.getUsers();
+            ArrayList<Product> products = DBProduct.getProducts();
             
             if (p != null) {
                 url = "/item.jsp";
