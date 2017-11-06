@@ -47,9 +47,10 @@ public class CatalogController extends HttpServlet {
         if (requestProductCode != null) {
             
             Product p = db.getProduct(requestProductCode); 
-            ArrayList<User> users = UserDB.getUsers();
             Product pp = DBProduct.getProduct("3");
             User u = UserDB.getUser("1");
+            //UserDB.addUser("Jane", "Doe", "Test@gmail", "234", "234", "Charlotte", "NC", "20205", "USA", "toor");
+            ArrayList<User> users = UserDB.getUsers();
             ArrayList<Product> products = DBProduct.getProducts();
             
             if (p != null) {

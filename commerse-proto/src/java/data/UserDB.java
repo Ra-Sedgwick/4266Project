@@ -40,6 +40,7 @@ public class UserDB {
             if (rs.first()) {
                 do {
                         user = new User();
+                        user.setId(rs.getInt("UserId"));
                         user.setFirstName(rs.getString("FirstName"));
                         user.setLastName(rs.getString("LastName"));
                         user.setEmail(rs.getString("Email"));
@@ -49,6 +50,7 @@ public class UserDB {
                         user.setState(rs.getString("State"));
                         user.setPostCode(rs.getString("Postal_Code"));
                         user.setCountry(rs.getString("Country"));
+                        user.setPassword(rs.getString("Password"));
                         users.add(user);
                 } while (rs.next());
             }
@@ -81,6 +83,7 @@ public class UserDB {
             
             if (rs.first()) {
                 user = new User();
+                user.setId(rs.getInt("UserID"));
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
                 user.setEmail(rs.getString("Email"));
@@ -90,6 +93,7 @@ public class UserDB {
                 user.setState(rs.getString("State"));
                 user.setPostCode(rs.getString("Postal_Code"));
                 user.setCountry(rs.getString("Country"));
+                user.setPassword(rs.getString("Password"));
             }
             return user;
         } catch (SQLException e) {
@@ -97,6 +101,63 @@ public class UserDB {
             return null;
         } finally {
             DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+    public static void addUser(
+            String lastName,
+            String firstName,
+            String email,
+            String address_1,
+            String address_2,
+            String city,
+            String state,
+            String postalCode,
+            String country,
+            String password
+    ) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setAddressField_1(address_1);
+        user.setAddressField_2(address_2);
+        user.setCity(city);
+        user.setState(state);
+        user.setPostCode(postalCode);
+        user.setCountry(country);
+        user.setPassword(password);
+        
+        addUser(user);
+    }
+    
+    public static int addUser(User user) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query
+                = "INSERT INTO User (LastName, FirstName, Email, Address_1, Address_2, City, State, Postal_Code, Country, Password)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, user.getLastName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getAddressField_1());
+            ps.setString(5, user.getAddressField_2());
+            ps.setString(6, user.getCity());
+            ps.setString(7, user.getState());
+            ps.setString(8, user.getPostCode());
+            ps.setString(9, user.getCountry());
+            ps.setString(10, user.getPassword());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }

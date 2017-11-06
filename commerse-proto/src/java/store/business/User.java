@@ -20,16 +20,16 @@ public class User {
     private String state;
     private String postCode;
     private String country;
-    private String id;
+    private int id;
     private String password;
     
     public User() {};
     
-    public void setId(String _id) {
+    public void setId(int _id) {
         id = _id;
     }
     
-    public String getId() {
+    public int getId() {
         return id;
     }
     

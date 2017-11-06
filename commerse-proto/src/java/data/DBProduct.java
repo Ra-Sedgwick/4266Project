@@ -116,7 +116,7 @@ public class DBProduct {
             Product product = null;
             
             if (rs.first()) {
-                 product = new Product();
+                product = new Product();
                 product.setProductName(rs.getString("Name"));
                 product.setCatalogCategory(rs.getString("CatelogCategory"));
                 product.setDescription(rs.getString("Description"));
