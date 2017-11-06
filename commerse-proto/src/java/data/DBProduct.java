@@ -99,4 +99,39 @@ public class DBProduct {
             pool.freeConnection(connection);
         }
     }
+    
+    public static Product getProduct(String productCode) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM Product "
+                + "WHERE ProductCode = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, productCode);
+            rs = ps.executeQuery();
+            
+            Product product = null;
+            
+            if (rs.first()) {
+                 product = new Product();
+                product.setProductName(rs.getString("Name"));
+                product.setCatalogCategory(rs.getString("CatelogCategory"));
+                product.setDescription(rs.getString("Description"));
+                product.setPrice(rs.getInt("Price"));
+            }
+            
+            return product;
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
 }
