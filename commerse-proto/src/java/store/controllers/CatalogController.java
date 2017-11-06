@@ -6,7 +6,7 @@
 package store.controllers;
 
 import data.DBProduct;
-import data.UserDB;
+import data.DBUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;

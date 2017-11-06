@@ -6,6 +6,7 @@
 package store.controllers;
 
 import data.DBProduct;
+import data.DBUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ import store.util.UserDB;
 public class OrderController extends HttpServlet {
 
     //ProductDB db = new ProductDB();
-    UserDB userDB = new UserDB();
+    //UserDB userDB = new UserDB();
     Cart cart = new Cart();
     List<Product> products = DBProduct.getProducts();
     
@@ -140,7 +141,7 @@ public class OrderController extends HttpServlet {
         
         if (action.equals("checkout")) {
             
-            List<User> users = userDB.getUsers();
+            List<User> users = DBUser.getUsers();
             User user = users.get(0); 
             session.setAttribute("theUser", user);
             

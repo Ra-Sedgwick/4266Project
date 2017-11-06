@@ -17,7 +17,7 @@ import store.business.User;
  *
  * @author rased
  */
-public class UserDB {
+public class DBUser {
     
     public static ArrayList<User> getUsers() {
         
