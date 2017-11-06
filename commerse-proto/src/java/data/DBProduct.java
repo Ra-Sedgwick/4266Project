@@ -101,6 +101,48 @@ public class DBProduct {
         }
     }
     
+    public static ArrayList<Product> getByCatagory(String catagory) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        String query = "SELECT * FROM Product "
+                + "WHERE CatelogCategory = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, catagory);
+            rs = ps.executeQuery();
+            
+            Product product = null;
+            
+            if (rs.first()) {
+                do {
+                        product = new Product();
+                        product.setProductCode(rs.getInt("ProductCode"));
+                        product.setProductName(rs.getString("Name"));
+                        product.setCatalogCategory(rs.getString("CatelogCategory"));
+                        product.setDescription(rs.getString("Description"));
+                        product.setPrice(rs.getInt("Price"));
+                        products.add(product);
+                        
+                } while (rs.next());
+            }
+            
+            return products;
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
     public static Product getProduct(String productCode) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -121,6 +163,7 @@ public class DBProduct {
             
             if (rs.first()) {
                 product = new Product();
+                product.setProductCode(rs.getInt("ProductCode"));
                 product.setProductName(rs.getString("Name"));
                 product.setCatalogCategory(rs.getString("CatelogCategory"));
                 product.setDescription(rs.getString("Description"));

@@ -5,6 +5,7 @@
  */
 package store.controllers;
 
+import data.DBProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,10 +35,12 @@ import store.util.UserDB;
 
 public class OrderController extends HttpServlet {
 
-    ProductDB db = new ProductDB();
+    //ProductDB db = new ProductDB();
     UserDB userDB = new UserDB();
     Cart cart = new Cart();
-    List<Product> products = db.getProducts();
+    List<Product> products = DBProduct.getProducts();
+    
+    int x = 10;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -92,7 +95,7 @@ public class OrderController extends HttpServlet {
                 
                 
                 for (Product product : products) {
-                    if (code.equals(product.getProductCode())) {
+                    if (code.equals(product.getStringProductCode())) {
                         
                         
                         // Get quantity

@@ -28,7 +28,8 @@ import store.util.ProductDB;
 @WebServlet(name = "CatalogController", urlPatterns = {"/catalog"})
 public class CatalogController extends HttpServlet {
 
-    ProductDB db = new ProductDB();
+    //ProductDB db = new ProductDB();
+
 
     
     public void doGet(HttpServletRequest request, 
@@ -41,16 +42,12 @@ public class CatalogController extends HttpServlet {
         String requestProductCode = request.getParameter("productCode");
         
         session.setAttribute("products", DBProduct.getProducts());
-        session.setAttribute("clipless", db.getByCatagory("clipless"));
-        session.setAttribute("platform", db.getByCatagory("platform"));
+        session.setAttribute("clipless", DBProduct.getByCatagory("clipless"));
+        session.setAttribute("platform", DBProduct.getByCatagory("platform"));
         ArrayList<Product> products = DBProduct.getProducts();
 
         if (requestProductCode != null) {
-            //Product p = db.getProduct(requestProductCode); 
-//            Product pp = DBProduct.getProduct("3");
-//            User u = UserDB.getUser("1");
-//            ArrayList<User> users = UserDB.getUsers();
-//            ArrayList<Product> products = DBProduct.getProducts
+
 
             Product p = DBProduct.getProduct(requestProductCode);
             
@@ -58,7 +55,7 @@ public class CatalogController extends HttpServlet {
                 url = "/item.jsp";
                 session.setAttribute("product", p); 
             } else { 
-                List<Product> ps = db.getProducts();          
+                List<Product> ps = DBProduct.getProducts();          
             }
        
         }
