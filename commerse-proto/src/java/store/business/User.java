@@ -20,8 +20,26 @@ public class User {
     private String state;
     private String postCode;
     private String country;
+    private String id;
+    private String password;
     
     public User() {};
+    
+    public void setId(String _id) {
+        id = _id;
+    }
+    
+    public String getId() {
+        return id;
+    }
+    
+    public void setPassword(String _password) {
+        password = _password;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
     
     public void setFirstName(String _firstName) {
         firstName = _firstName;

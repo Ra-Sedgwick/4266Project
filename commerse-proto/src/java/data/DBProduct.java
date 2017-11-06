@@ -18,6 +18,7 @@ import store.business.User;
  * @author rased
  */
 public class DBProduct {
+    
     public static ArrayList<Product> getProducts() {
         
         ArrayList<Product> products = new ArrayList<Product>();
@@ -55,5 +56,47 @@ public class DBProduct {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-    }    
+    }   
+    
+    public static void addProduct(
+            String name, 
+            String category,
+            double price,
+            String description) {
+        
+        Product p = new Product();
+        p.setProductName(name);
+        p.setCatalogCategory(category);
+        p.setPrice(price);
+        p.setDescription(description);
+        
+        addProduct(p);
+    }
+    
+    public static int addProduct(Product product) {
+         ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query
+                = "INSERT INTO Product (Name, CatelogCategory, Description, Price, ImageURL)"
+                + "VALUES (?, ?, ?, ?, ?)";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, product.getProductName());
+            ps.setString(2, product.getCatalogCategory());
+            ps.setString(3, product.getDescription());
+            ps.setDouble(4, product.getPrice());
+            ps.setString(5, "C:\\Users\\rased\\projects\\4166Project\\commerse-proto\\web\\images\\pedal.jpg");
+            
+            return ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
 }

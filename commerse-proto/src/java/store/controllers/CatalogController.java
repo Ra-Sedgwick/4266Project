@@ -48,6 +48,9 @@ public class CatalogController extends HttpServlet {
             
             Product p = db.getProduct(requestProductCode); 
             ArrayList<User> users = UserDB.getUsers();
+            DBProduct.addProduct("New Pedal", "clipless", 99.09, "Some new pedals");
+
+
             ArrayList<Product> products = DBProduct.getProducts();
             
             if (p != null) {
