@@ -64,8 +64,8 @@ public class OrderController extends HttpServlet {
             str_quantity = (String[]) session.getAttribute("quantities");
             
             for (int i = 0; i < productList.length; i++) {
-                for (Product p : products) {
-                    if (p.getProductCode().equals(productList[i])){
+                for (Product p : products) {                    
+                    if (p.getStringProductCode().equals(productList[i])){
                         int q = Integer.parseInt(str_quantity[i]);
                         cart.addItem(p, q);
                     }

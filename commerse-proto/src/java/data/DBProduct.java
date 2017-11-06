@@ -38,6 +38,7 @@ public class DBProduct {
             if (rs.first()) {
                 do {
                         product = new Product();
+                        product.setProductCode(rs.getInt("ProductCode"));
                         product.setProductName(rs.getString("Name"));
                         product.setCatalogCategory(rs.getString("CatelogCategory"));
                         product.setDescription(rs.getString("Description"));
@@ -105,12 +106,15 @@ public class DBProduct {
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        
+        int pc = Integer.parseInt(productCode);
+        
 
         String query = "SELECT * FROM Product "
                 + "WHERE ProductCode = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, productCode);
+            ps.setInt(1, pc);
             rs = ps.executeQuery();
             
             Product product = null;

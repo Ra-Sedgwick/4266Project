@@ -40,18 +40,19 @@ public class CatalogController extends HttpServlet {
         String requestURI = request.getRequestURI();
         String requestProductCode = request.getParameter("productCode");
         
-        session.setAttribute("products", db.getProducts());
+        session.setAttribute("products", DBProduct.getProducts());
         session.setAttribute("clipless", db.getByCatagory("clipless"));
         session.setAttribute("platform", db.getByCatagory("platform"));
-        
+        ArrayList<Product> products = DBProduct.getProducts();
+
         if (requestProductCode != null) {
-            
-            Product p = db.getProduct(requestProductCode); 
-            Product pp = DBProduct.getProduct("3");
-            User u = UserDB.getUser("1");
-            //UserDB.addUser("Jane", "Doe", "Test@gmail", "234", "234", "Charlotte", "NC", "20205", "USA", "toor");
-            ArrayList<User> users = UserDB.getUsers();
-            ArrayList<Product> products = DBProduct.getProducts();
+            //Product p = db.getProduct(requestProductCode); 
+//            Product pp = DBProduct.getProduct("3");
+//            User u = UserDB.getUser("1");
+//            ArrayList<User> users = UserDB.getUsers();
+//            ArrayList<Product> products = DBProduct.getProducts
+
+            Product p = DBProduct.getProduct(requestProductCode);
             
             if (p != null) {
                 url = "/item.jsp";

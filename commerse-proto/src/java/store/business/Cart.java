@@ -43,7 +43,7 @@ public class Cart {
     
     public OrderItem getItem(Product product) {
         for (OrderItem i : orderItems) {
-            if (i.getProduct().getProductCode().equals(product.getProductCode())){
+            if (i.getProduct().getProductCode() == product.getProductCode()){
                 return i;
             }
         }

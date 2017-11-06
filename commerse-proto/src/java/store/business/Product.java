@@ -14,7 +14,7 @@ import java.text.NumberFormat;
  */
 public class Product implements Serializable {
     
-    private String productCode;
+    private int productCode;
     private String productName;
     private String catalogCategory;
     private String description; 
@@ -22,11 +22,15 @@ public class Product implements Serializable {
     
     public Product() {}
     
-    public String getProductCode() {
+    public String getStringProductCode() {
+        return Integer.toString(productCode);
+    }
+    
+    public int getProductCode() {
         return productCode;
     }
     
-    public void setProductCode(String _productCode) {
+    public void setProductCode(int _productCode) {
         productCode = _productCode;
     }
     

@@ -46,8 +46,10 @@ public class ProductDB {
     
     public Product getProduct(String productCode) {
         
+        int pc = Integer.parseInt(productCode);
+        
         for (Product p : products) 
-            if (p.getProductCode().equals(productCode))
+            if (p.getProductCode() == pc)
                 return p; 
         
         
@@ -60,7 +62,7 @@ public class ProductDB {
         Product p; 
        
         p = new Product();
-        p.setProductCode("0");
+        p.setProductCode(1);
         p.setProductName("Shimano");
         p.setCatalogCategory("clipless");
         p.setPrice(199.99);
@@ -68,7 +70,7 @@ public class ProductDB {
         products.add(p);
         
         p = new Product();
-        p.setProductCode("1");
+        p.setProductCode(2);
         p.setProductName("Crank Brothers");
         p.setCatalogCategory("clipless");
         p.setPrice(94.99);
@@ -76,7 +78,7 @@ public class ProductDB {
         products.add(p);
         
         p = new Product();
-        p.setProductCode("2");
+        p.setProductCode(3);
         p.setProductName("Look");
         p.setCatalogCategory("clipless");
         p.setPrice(40.64);
@@ -84,7 +86,7 @@ public class ProductDB {
         products.add(p);
         
         p = new Product();
-        p.setProductCode("3");
+        p.setProductCode(4);
         p.setProductName("Crank Brothers");
         p.setCatalogCategory("platform");
         p.setPrice(120.00);
@@ -92,7 +94,7 @@ public class ProductDB {
         products.add(p);
         
         p = new Product();
-        p.setProductCode("4");
+        p.setProductCode(5);
         p.setProductName("Shimano");
         p.setCatalogCategory("platform");
         p.setPrice(89.50);
@@ -100,7 +102,7 @@ public class ProductDB {
         products.add(p);
         
         p = new Product();
-        p.setProductCode("5");
+        p.setProductCode(6);
         p.setProductName("DMR");
         p.setCatalogCategory("platform");
         p.setPrice(53.30);
