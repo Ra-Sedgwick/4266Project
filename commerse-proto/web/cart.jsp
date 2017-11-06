@@ -1,7 +1,10 @@
 <jsp:include page="includes/header.jsp" />
+
     <main>
+        
         <jsp:include page="includes/site-navigation.jsp" />
-        <section>
+        
+        <section id="cart-container">
             <form action="OrderController?action=updateCart" method="post" class="cart-button">
             <h2>Your Cart</h2>
             <jsp:include page="includes/cart-container.jsp" />
@@ -11,8 +14,6 @@
         </section>
         
     </main>
-            
-<jsp:include page="includes/viewSessions.jsp" />
             
 <jsp:include page="includes/footer.jsp" />
 

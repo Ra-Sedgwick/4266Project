@@ -5,15 +5,11 @@
  */
 package store.controllers;
 
-import data.DBProduct;
-import data.DBUser;
+import data.ProductDB;
+import data.UserDB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,8 +22,6 @@ import store.business.Order;
 import store.business.OrderItem;
 import store.business.Product;
 import store.business.User;
-import store.util.ProductDB;
-import store.util.UserDB;
 
 /**
  *
@@ -37,58 +31,70 @@ import store.util.UserDB;
 
 public class OrderController extends HttpServlet {
 
-    List<Product> products = DBProduct.getProducts();
     Cart cart;
     Cart requestCart;
+    List<Product> products = ProductDB.getAllProducts();
+
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-        
-        String url = "/order.jsp";
         HttpSession session = request.getSession();
-        String requestURI = request.getRequestURI();
-        requestCart = (Cart) session.getAttribute("theShoppingCart");
-        String[] str_quantity = null;
-        String[] productList = null;
         
 
+        String[] str_quantity;
+        String[] productList;
         
+         // Get Cart from session
+        requestCart = (Cart) session.getAttribute("theShoppingCart");       
+
         
+        // If a Cart was not found create one
         if (requestCart == null) {
+            
             cart = new Cart();
             cart.setOrderItems();
             
-            
+            // Parallel arrays representing the Cart items. 
             productList = request.getParameterValues("productList[]");
             str_quantity = request.getParameterValues("quantity[]");
             
+            // Add every Item in product list to Cart. 
             for (int i = 0; i < productList.length; i++) {
-                for (Product p : products) {                    
+                
+                for (Product p : products) {      
+                    
                     if (p.getStringProductCode().equals(productList[i])){
+                        
                         int q = Integer.parseInt(str_quantity[i]);
                         cart.addItem(p, q);
                     }
+                    
                 }
+                
             }
+            
             session.setAttribute("theShoppingCart", cart);
         }
         else {
             
-            ;
-            
             productList = request.getParameterValues("productList[]");
             str_quantity = request.getParameterValues("quantity[]");
             
             for (int i = 0; i < productList.length; i++) {
-                for (Product p : products) {                    
+                
+                for (Product p : products) {         
+                    
                     if (p.getStringProductCode().equals(productList[i])){
+                        
                         int q = Integer.parseInt(str_quantity[i]);
                         requestCart.addItem(p, q);
+                        
                     }
+                    
                 }
+                
             }
             
             session.setAttribute("theShoppingCart", requestCart);
@@ -144,13 +150,10 @@ public class OrderController extends HttpServlet {
                         
                     }
                 }
-                i++;
                 
+                i++;   
             }
             
-            
-       
-
             getServletContext()
                     .getRequestDispatcher("/cart.jsp")
                     .forward(request, response);
@@ -158,10 +161,9 @@ public class OrderController extends HttpServlet {
         
         if (action.equals("checkout")) {
             
-            List<User> users = DBUser.getUsers();
+            List<User> users = UserDB.getAllUsers();
             User user = users.get(0); 
             session.setAttribute("theUser", user);
-            
             Order order = new Order();
             order.setOrderNumber(UUID.randomUUID().toString());
             order.setDate( new Date() );
@@ -169,6 +171,7 @@ public class OrderController extends HttpServlet {
             order.setOrderItems(cart.getOrderItems());
             order.setTaxRate(0.06);
             session.setAttribute("currentOrder", order);
+            
             getServletContext()
                     .getRequestDispatcher("/order.jsp")
                     .forward(request, response);

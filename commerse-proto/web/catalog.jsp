@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="includes/header.jsp" />
+
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
@@ -24,9 +26,6 @@
         
     </main>
      
-<jsp:include page="includes/viewSessions.jsp" />
-     
-   
 <jsp:include page="includes/footer.jsp" />
 
 

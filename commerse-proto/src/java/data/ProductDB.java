@@ -11,18 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import store.business.Product;
-import store.business.User;
 
 /**
  *
  * @author rased
  */
-public class DBProduct {
+public class ProductDB {
     
-    public static ArrayList<Product> getProducts() {
+    
+    public static ArrayList<Product> getAllProducts() {
         
-        ArrayList<Product> products = new ArrayList<Product>();
-        Product product = null;
+        ArrayList<Product> products = new ArrayList<>();
+        Product product;
         
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -107,7 +107,7 @@ public class DBProduct {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<Product> products = new ArrayList<>();
 
         String query = "SELECT * FROM Product "
                 + "WHERE CatelogCategory = ?";
@@ -116,7 +116,7 @@ public class DBProduct {
             ps.setString(1, catagory);
             rs = ps.executeQuery();
             
-            Product product = null;
+            Product product;
             
             if (rs.first()) {
                 do {

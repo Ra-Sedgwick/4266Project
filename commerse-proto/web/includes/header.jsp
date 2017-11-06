@@ -22,6 +22,6 @@
     </header>
     <nav>
         <a href="login.jsp">Log In</a>
-        <a href="OrderController">Cart</a>
+        <a href="cart.jsp">Cart</a>
         <a href="order.jsp">Order</a>
     </nav>

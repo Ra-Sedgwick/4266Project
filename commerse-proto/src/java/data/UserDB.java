@@ -6,7 +6,6 @@
 package data;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +16,9 @@ import store.business.User;
  *
  * @author rased
  */
-public class DBUser {
+public class UserDB {
     
-    public static ArrayList<User> getUsers() {
+    public static ArrayList<User> getAllUsers() {
         
         ArrayList<User> users = new ArrayList<User>();
         User user = null;

@@ -4,7 +4,7 @@
         <section>
             <h2>Current Item</h2>
             <figure>
-                <img src='pedal.jpg' style='height:200px'>
+                <img src='images/CrankBrothersClipless.jpg' style='height:200px'>
                 <figcaption>
                     <h3>${product.getProductName()}: ${product.getPriceCurrencyFormat()}</h3>
                     <p>${product.getDescription()}</p>
@@ -22,8 +22,6 @@
             
         </section>
     </main>
-                
-<jsp:include page="includes/viewSessions.jsp" />
 
 <jsp:include page="includes/footer.jsp" />
 
