@@ -5,8 +5,8 @@
  */
 package store.controllers;
 
-import data.ProductDB;
-import data.UserDB;
+import stron.data.ProductDB;
+import stron.data.UserDB;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -60,20 +60,25 @@ public class OrderController extends HttpServlet {
             productList = request.getParameterValues("productList[]");
             str_quantity = request.getParameterValues("quantity[]");
             
-            // Add every Item in product list to Cart. 
-            for (int i = 0; i < productList.length; i++) {
+            
+            if (productList != null) {
                 
-                for (Product p : products) {      
-                    
-                    if (p.getStringProductCode().equals(productList[i])){
-                        
-                        int q = Integer.parseInt(str_quantity[i]);
-                        cart.addItem(p, q);
+                for (int i = 0; i < productList.length; i++) {
+                
+                    for (Product p : products) {      
+
+                        if (p.getStringProductCode().equals(productList[i])){
+
+                            int q = Integer.parseInt(str_quantity[i]);
+                            cart.addItem(p, q);
+                        }
+
                     }
-                    
+
                 }
-                
+            
             }
+            // Add every Item in product list to Cart. 
             
             session.setAttribute("theShoppingCart", cart);
         }
@@ -82,20 +87,23 @@ public class OrderController extends HttpServlet {
             productList = request.getParameterValues("productList[]");
             str_quantity = request.getParameterValues("quantity[]");
             
-            for (int i = 0; i < productList.length; i++) {
+            if (productList != null) {
+                for (int i = 0; i < productList.length; i++) {
                 
-                for (Product p : products) {         
-                    
-                    if (p.getStringProductCode().equals(productList[i])){
-                        
-                        int q = Integer.parseInt(str_quantity[i]);
-                        requestCart.addItem(p, q);
-                        
+                    for (Product p : products) {         
+
+                        if (p.getStringProductCode().equals(productList[i])){
+
+                            int q = Integer.parseInt(str_quantity[i]);
+                            requestCart.addItem(p, q);
+
+                        }
+
                     }
-                    
-                }
                 
+                }
             }
+            
             
             session.setAttribute("theShoppingCart", requestCart);
         }

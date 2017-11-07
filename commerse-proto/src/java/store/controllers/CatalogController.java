@@ -5,7 +5,7 @@
  */
 package store.controllers;
 
-import data.ProductDB;
+import stron.data.ProductDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
