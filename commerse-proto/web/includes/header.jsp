@@ -7,6 +7,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles/main.css">
+        <!--    jQuery CDN      -->
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous">
+        </script>
+
+        <!--    jQueryUI CDN     -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous">
+        </script>
+
+        <!--    Site Javascript     -->
+        <script src="scripts/site.js"> </script>
     </head>
     <header>
         <c:choose>
@@ -18,10 +34,11 @@
             </c:otherwise>
         </c:choose>
 <!--                <p id="login-msg">${theUser.email}</p>-->
-        <h1><img src='pedal.jpg' alt="" style="width:100px">Just Bike Pedals!</h1>   
+<!--        <h1><img src='pedal.jpg' alt="" style="width:100px">Just Bike Pedals!</h1>   -->
     </header>
     <nav>
         <a href="login.jsp">Log In</a>
         <a href="cart.jsp">Cart</a>
         <a href="order.jsp">Order</a>
     </nav>
+    <body>
