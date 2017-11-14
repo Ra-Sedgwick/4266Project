@@ -5,11 +5,21 @@
     <hr id="line-break">
     
     <form action="" metho="POST">
-        <select name="Credit Card Type">
+        
+        <label for="masterCard">Card Type: </label>
+        <select name="Credit Card Type" id="card-type">
             <option value="masterCard">Master Card</option>
             <option value="visa">Visa</option>
-        </select>
-        <input type="text" name="Card Number" value="Card Number" />
+        </select> <br>
+        
+        <label for="cardNumber">Card Number: </label>
+        <input type="text" id="cardNumber" name="Card Number" value="No dashes" /> <br>
+        
+        <label for="datepicker">Date: </label>
+        <input type="text" id="datepicker" /></br>
+        
+        <label for="cvv">CVV (3-Digit) : </label>
+        <input type="text" id="cvv" />
         
     </form>
     

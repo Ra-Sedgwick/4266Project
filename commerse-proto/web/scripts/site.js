@@ -1,2 +1,7 @@
-console.log("Working");
-alert("Working");
+$( function() {
+    
+    
+    $( "#datepicker" ).datepicker();
+    
+    
+} );
