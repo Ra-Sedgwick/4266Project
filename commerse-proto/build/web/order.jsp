@@ -17,7 +17,7 @@
             </section>
             <form class="cart-button">
                 <button type="submit" formaction="cart.jsp">Back To Cart</button>
-                <button type="submit" formaction="catalog.jsp">Purchase</button>   
+                <button type="submit" formaction="payment.jsp">Purchase</button>   
             </form>
         </section>
         <section class="orderInfo">
