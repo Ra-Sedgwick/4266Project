@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stron.data;
+package store.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,8 +54,8 @@ public class ProductDB {
             System.out.println(e);
             return null;
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }   
@@ -99,7 +99,7 @@ public class ProductDB {
             System.out.println(e);
             return 0;
         } finally {
-            DBUtil.closePreparedStatement(ps);
+            UtilDb.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }
@@ -141,8 +141,8 @@ public class ProductDB {
             System.out.println(e);
             return null;
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }
@@ -181,8 +181,8 @@ public class ProductDB {
             System.out.println(e);
             return null;
         } finally {
-            DBUtil.closeResultSet(rs);
-            DBUtil.closePreparedStatement(ps);
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }

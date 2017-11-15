@@ -11,10 +11,19 @@ package store.business;
  */
 public class OrderItem {
     
+    private String orderNumber;
     private Product product;
     private int quantity;
     
     public OrderItem() {};
+    
+    public void setOrderNumber(String _orderNumber) {
+        orderNumber = _orderNumber;
+    }
+    
+    public String getOrderNumber() {
+        return orderNumber;
+    }
     
     public void setProduct(Product _product) {
         product = _product;

@@ -5,8 +5,8 @@
  */
 package store.controllers;
 
-import stron.data.ProductDB;
-import stron.data.UserDB;
+import store.data.ProductDB;
+import store.data.UserDB;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;

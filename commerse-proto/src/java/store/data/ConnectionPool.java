@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package stron.data;
+package store.data;
 
 import java.sql.Connection;
 import java.sql.SQLException;
