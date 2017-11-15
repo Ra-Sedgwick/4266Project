@@ -2,7 +2,8 @@
 
 <section>
     <h1>Enter Your Payment Information</h1>
-    <hr id="line-break">
+
+    <hr>
     
     <form action="" metho="POST">
         
@@ -19,10 +20,19 @@
         <input type="text" id="datepicker" /></br>
         
         <label for="cvv">CVV (3-Digit) : </label>
-        <input type="text" id="cvv" />
+        <input type="text" id="cvv" /> </br>
+        
+        <hr class="line-break">
+
+        <p> Your card will be charged a total of: $100.99 </p>
+            
+        <input type="submit" value="Confirm Payment" name="purchase" />
         
     </form>
     
-    <hr id="line-break">
+    
+        
+    
+
     
 </section>

@@ -7,7 +7,7 @@
         <section id="cart-container">
             <jsp:include page="includes/payment-container.jsp" />
         </section>
-        
+
     </main>
             
 <jsp:include page="includes/footer.jsp" />

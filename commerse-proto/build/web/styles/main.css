@@ -131,3 +131,19 @@ table > tbody > tr > td > form > input {
     padding-right: 10px;
 }
 
+label {
+    width:180px;
+    clear:left;
+    text-align:left;
+    padding-right:10px;
+    padding-bottom: 10px;
+}
+
+input, label {
+    float:left;
+    
+}
+
+.line-break {
+    margin-top: 45px;
+}
