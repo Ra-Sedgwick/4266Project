@@ -36,13 +36,26 @@ CREATE TABLE Product (
   PRIMARY KEY (`ProductCode`)
 );	
 
-DROP TABLE IF EXISTS OrderItem;
-CREATE TABLE OrderItem (
+DROP TABLE IF EXISTS Order_Item;
+CREATE TABLE Order_Item (
 	OrderNumber int(50) NOT NULL,
     ProductCode int(11) NOT NULL,
     Quantity int(11) NOT NULL,
     PRIMARY KEY (OrderNumber, ProductCode)
 );
+
+DROP TABLE IF EXISTS `Order`;
+CREATE TABLE `Order` (
+	 OrderNumber int(50) NOT NULL AUTO_INCREMENT,
+	 Date date NOT NULL,
+	 User_ID int(11) NOT NULL,
+	 Tax_Rate float(11,2) NOT NULL,
+	 Total_Cost double(50,2) NOT NULL,
+	 Paid bit(1) NOT NULL,
+	 PRIMARY KEY (OrderNumber)
+);
+
+
 
 
 INSERT INTO User (
@@ -158,4 +171,29 @@ VALUES (
     'DRM v12 Alloy Pedals',
      53.30,
      'images/DRMPlatform.jpg'
- )
+ );
+
+INSERT INTO `Order` (
+	date,
+    user_id,
+    tax_rate,
+    total_cost,
+    paid)
+Values (
+	NOW(),
+    1,
+    .06,
+    100.99,
+    0
+);
+
+INSERT INTO Order_Item (
+	OrderNumber,
+    ProductCode,
+    Quantity
+)
+Values (
+	1,
+    1,
+    1
+);

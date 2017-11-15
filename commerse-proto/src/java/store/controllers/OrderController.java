@@ -185,6 +185,10 @@ public class OrderController extends HttpServlet {
                     .forward(request, response);
             
         }
+        
+        if (action.equals("confirmOrder")) {
+            int x = 10;
+        }
     }
 
     @Override

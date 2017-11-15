@@ -5,7 +5,7 @@
 
     <hr>
     
-    <form action="" metho="POST">
+    <form action="OrderController?action=confirmOrder" method="post">
         
         <label for="masterCard">Card Type: </label>
         <select name="Credit Card Type" id="card-type">
