@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="includes/header.jsp" />
 
     <main>
@@ -13,12 +14,12 @@
                     <th>Order Date</th>
                     <th>Total</th>
                 </tr>
-                <tr>
-                    <td>123</td>
-                    <td>Adam</td>
-                    <td>today</td>
-                    <td>23.3</td>
-                </tr>
+                <c:forEach var="order" items="${orderList}">
+                    <td>${order.orderNumber}</td>
+                    <td>${order.user.firstName}</td>
+                    <td>${order.date}</td>
+                    <td>${order.totalCost}</td>
+                </c:forEach>
             </table>
         </section>
 
