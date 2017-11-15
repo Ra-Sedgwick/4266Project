@@ -40,6 +40,6 @@
     <nav>
         <a href="login.jsp">Log In</a>
         <a href="cart.jsp">Cart</a>
-        <a href="orderList.jsp">My Orders</a>
+        <a href="OrderController?action=viewOrders">My Orders</a>
     </nav>
     <body>

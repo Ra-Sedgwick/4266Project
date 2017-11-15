@@ -189,6 +189,17 @@ public class OrderController extends HttpServlet {
         if (action.equals("confirmOrder")) {
             int x = 10;
         }
+        
+        if (action.equals("viewOrders")) {
+            User sessionUser = (User) session.getAttribute("theUser");
+            
+            if (sessionUser == null) {
+                response.sendRedirect("catalog");
+            }
+            else {
+                int x = 10;
+            }
+        }
     }
 
     @Override
