@@ -8,6 +8,7 @@ package store.controllers;
 import store.data.ProductDB;
 import store.data.UserDB;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +23,7 @@ import store.business.Order;
 import store.business.OrderItem;
 import store.business.Product;
 import store.business.User;
+import store.data.OrderDB;
 
 /**
  *
@@ -192,6 +194,7 @@ public class OrderController extends HttpServlet {
         
         if (action.equals("viewOrders")) {
             User sessionUser = (User) session.getAttribute("theUser");
+            ArrayList<Order> orders = OrderDB.getOrders(1);
             
             if (sessionUser == null) {
                 response.sendRedirect("catalog");

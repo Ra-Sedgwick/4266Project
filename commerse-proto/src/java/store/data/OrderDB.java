@@ -24,7 +24,7 @@ public class OrderDB {
     public static ArrayList<Order> getOrders(int userID) {
         
         ArrayList<Order> orders = new ArrayList<>();
-        ArrayList<OrderItem> orderItems = new ArrayList<>();
+        ArrayList<OrderItem> orderItems;
         Order order;
         User user;
         
@@ -43,11 +43,15 @@ public class OrderDB {
                 do {
                     order = new Order();
                     user = UserDB.getUser(rs.getString("User_ID"));
+                    
+                    orderItems = new ArrayList<OrderItem>();
                     orderItems = OrderItemDB.getOrderItems(rs.getString("OrderNumber"));
                     
                     order.setUser(user);
                     order.setDate(rs.getDate("Date"));
+                    order.setOrderItems(orderItems);
                     order.setTaxRate(rs.getDouble("Tax_Rate"));
+                    
                     
                     orders.add((order));
                     

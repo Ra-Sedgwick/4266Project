@@ -31,7 +31,7 @@ public class OrderItemDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM Order_Item WHERE `Order`.User_ID = " + orderNumber;
+        String query = "SELECT * FROM Order_Item WHERE Order_Item.OrderNumber = " + orderNumber;
         
         try {
             ps = connection.prepareStatement(query);
