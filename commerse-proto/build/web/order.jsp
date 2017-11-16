@@ -14,7 +14,7 @@
             <section>
                 <p>Sub Total: $${currentOrder.getSubTotal()}</p>
                 <p>Tax      : $${currentOrder.taxRate}</p>
-                <p>Total    : $${currentOrder.totalCost}</p>
+                <p>Total    : $${currentOrder.getTotalCost()}</p>
             </section>
                 <c:choose>
                     <c:when test="${currentOrder.getIsPaid()}">

@@ -5,6 +5,9 @@
  */
 package store.business;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -73,7 +76,11 @@ public class Order {
         }
         
         totalCost = totalCost + (totalCost * taxRate);
-        int x = 10;
+        totalCost = round(totalCost, 2);
+    }
+    
+    public void setTotalCost(double _totalCost) {
+        totalCost = _totalCost;
     }
     
     public double getSubTotal() {
@@ -81,7 +88,7 @@ public class Order {
         for (OrderItem i : orderItems) {
             subTotal += (i.getProduct().getPrice() * i.getQuantity());
         }
-        return subTotal;
+        return round(subTotal, 2);
     }
     
     public double getTotalCost() {   
@@ -95,4 +102,13 @@ public class Order {
     public boolean getIsPaid() {
         return isPaid;
     }
+    
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+    
 }

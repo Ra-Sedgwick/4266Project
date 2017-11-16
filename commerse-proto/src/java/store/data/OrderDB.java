@@ -88,7 +88,7 @@ public class OrderDB {
                     order.setDate(rs.getDate("Date"));
                     order.setOrderItems(orderItems);
                     order.setTaxRate(rs.getDouble("Tax_Rate"));
-                    order.setTotalCost();
+                    order.setTotalCost(rs.getDouble("Total_Cost"));
                     
                     
                     orders.add((order));

@@ -19,7 +19,7 @@
                         <td>${order.orderNumber}</td>
                         <td>${order.user.firstName}</td>
                         <td>${order.date}</td>
-                        <td>$${currentOrder.totalCost + (currentOrder.totalCost * currentOrder.taxRate)}</td>
+                        <td>$${order.totalCost}</td>
                     </tr>
                     
                 </c:forEach>
