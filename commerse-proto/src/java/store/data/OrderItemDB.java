@@ -27,7 +27,7 @@ public class OrderItemDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "INSERT INTO `Order`"
+        String query = "INSERT INTO Order_Item"
                 + "(OrderNumber, ProductCode, Quantity) "
                 + "Values (?, ?, ?)";
         

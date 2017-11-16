@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="includes/header.jsp" />
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
@@ -15,10 +16,17 @@
                 <p>Tax      : $${currentOrder.taxRate}</p>
                 <p>Total    : $${currentOrder.totalCost + (currentOrder.totalCost * currentOrder.taxRate)}</p>
             </section>
-            <form class="cart-button">
-                <button type="submit" formaction="cart.jsp">Back To Cart</button>
-                <button type="submit" formaction="payment.jsp">Purchase</button>   
-            </form>
+                <c:choose>
+                    <c:when test="${currentOrder.getIsPaid()}">
+                        <p>Paid In Full</p>
+                    </c:when>
+                    <c:otherwise>
+                        <form class="cart-button">
+                            <button type="submit" formaction="cart.jsp">Back To Cart</button>
+                            <button type="submit" formaction="payment.jsp">Purchase</button>   
+                        </form>
+                    </c:otherwise>
+                </c:choose>
         </section>
         <section class="orderInfo">
             <h2>Order Items</h2>

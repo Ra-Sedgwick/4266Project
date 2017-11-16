@@ -5,11 +5,18 @@
  */
 package store.data;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import store.business.Order;
 import store.business.OrderItem;
 import store.business.User;
@@ -32,10 +39,12 @@ public class OrderDB {
                 + "(OrderNumber, date, user_id, tax_rate, total_cost, paid) "
                 + "Values (?, ?, ?, ?, ?, ?)";
         
+        java.sql.Timestamp sqlDate = new java.sql.Timestamp(order.getDate().getTime());
+        
         try {
             ps = connection.prepareStatement(query);
             ps.setString(1, order.getOrderNumber());
-            ps.setDate(2, java.sql.Date.valueOf(order.getDate().toString()));
+            ps.setTimestamp(2, sqlDate);
             ps.setInt(3, order.getUser().getId());
             ps.setDouble(4, order.getTaxRate());
             ps.setDouble(5, order.getTotalCost());

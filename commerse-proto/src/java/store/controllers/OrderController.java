@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +25,7 @@ import store.business.OrderItem;
 import store.business.Product;
 import store.business.User;
 import store.data.OrderDB;
+import store.data.OrderItemDB;
 
 /**
  *
@@ -189,7 +191,25 @@ public class OrderController extends HttpServlet {
         }
         
         if (action.equals("confirmOrder")) {
-            int x = 10;
+            
+            Order sessionOrder = (Order) session.getAttribute("currentOrder");
+            
+            if (sessionOrder != null) {
+                
+                sessionOrder.setIsPaid(true);
+                OrderDB.insert(sessionOrder);
+                session.setAttribute("currentOrder", sessionOrder);
+                
+                for (OrderItem orderItem : sessionOrder.getOrderItems()) {
+                    orderItem.setOrderNumber(sessionOrder.getOrderNumber());
+                    OrderItemDB.insert(orderItem);
+                    
+                }
+                
+                getServletContext()
+                    .getRequestDispatcher("/order.jsp")
+                    .forward(request, response);
+            }
         }
         
         if (action.equals("viewOrders")) {
