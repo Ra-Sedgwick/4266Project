@@ -18,6 +18,7 @@ CREATE TABLE User (
   Postal_Code int(11) DEFAULT NULL,
   Country varchar(50) DEFAULT NULL,
   Password varchar(50) NOT NULL,
+  User_Role varchar(50) NOT NULL, 
   PRIMARY KEY (`UserID`)
 );
 
@@ -55,8 +56,25 @@ CREATE TABLE `Order` (
 	 PRIMARY KEY (OrderNumber)
 );
 
+DROP TABLE IF EXISTS UserRole;
+CREATE TABLE UserRole (
+    Username varchar(50) NOT NULL,
+    Rolename varchar(50) NOT NULL,
+    PRIMARY KEY (Username, Rolename)
+);
+
+DROP TABLE IF EXISTS UserPass;
+CREATE TABLE userPass (
+	Username varchar(50) NOT NULL PRIMARY KEY,
+    Password varchar(50) NOT NULL
+);
+
+INSERT INTO UserPass (UserName, Password)
+Values ('johnSmith', 'toor');
 
 
+INSERT INTO userRole (userName, roleName)
+Values ('johnSmith', 'admin');
 
 INSERT INTO User (
 	LastName,
@@ -68,18 +86,20 @@ INSERT INTO User (
     State,
     Postal_Code,
     Country,
-    Password)
+    Password,
+	User_Role)
 Values (
 	'Smith',
     'John',
-    'Jsmith@earthlink.org',
+    'test@gmail.com',
     '123 Fake street',
     'Apt 1',
     'Charlotte',
     'North Carolina',
     '55555',
     'USA', 
-    'toor'
+    'toor',
+    'admin'
 );
 
 INSERT INTO Product (

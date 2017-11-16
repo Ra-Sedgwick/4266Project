@@ -50,6 +50,7 @@ public class UserDB {
                         user.setPostCode(rs.getString("Postal_Code"));
                         user.setCountry(rs.getString("Country"));
                         user.setPassword(rs.getString("Password"));
+                        user.setUserRole(rs.getString("User_Role"));
                         users.add(user);
                 } while (rs.next());
             }
