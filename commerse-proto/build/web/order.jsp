@@ -12,9 +12,9 @@
                 <p>${currentOrder.user.city}, ${currentOrder.user.state} ${currentOrder.user.postCode}</p>
             </section>
             <section>
-                <p>Sub Total: $${currentOrder.totalCost}</p>
+                <p>Sub Total: $${currentOrder.getSubTotal()}</p>
                 <p>Tax      : $${currentOrder.taxRate}</p>
-                <p>Total    : $${currentOrder.totalCost + (currentOrder.totalCost * currentOrder.taxRate)}</p>
+                <p>Total    : $${currentOrder.totalCost}</p>
             </section>
                 <c:choose>
                     <c:when test="${currentOrder.getIsPaid()}">

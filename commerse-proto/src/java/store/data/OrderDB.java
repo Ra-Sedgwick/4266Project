@@ -5,18 +5,11 @@
  */
 package store.data;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import store.business.Order;
 import store.business.OrderItem;
 import store.business.User;
@@ -40,6 +33,7 @@ public class OrderDB {
                 + "Values (?, ?, ?, ?, ?, ?)";
         
         java.sql.Timestamp sqlDate = new java.sql.Timestamp(order.getDate().getTime());
+        order.setTotalCost();
         
         try {
             ps = connection.prepareStatement(query);
@@ -62,6 +56,55 @@ public class OrderDB {
         }
                 
         
+    }
+    
+    public static ArrayList<Order> getOrders() {
+        ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<OrderItem> orderItems;
+        Order order;
+        User user;
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "SELECT * FROM `Order`";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery(query);
+            
+            if (rs.first()) {
+                do {
+                    order = new Order();
+                    user = UserDB.getUser(rs.getString("User_ID"));
+                    
+                    orderItems = new ArrayList<>();
+                    orderItems = OrderItemDB.getOrderItems(rs.getString("OrderNumber"));
+                    
+                    order.setUser(user);
+                    order.setOrderNumber(rs.getString("OrderNumber"));
+                    order.setDate(rs.getDate("Date"));
+                    order.setOrderItems(orderItems);
+                    order.setTaxRate(rs.getDouble("Tax_Rate"));
+                    order.setTotalCost();
+                    
+                    
+                    orders.add((order));
+                    
+                } while (rs.next());
+            }
+            
+            return orders;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
     }
     
     public static ArrayList<Order> getOrders(int userID) {

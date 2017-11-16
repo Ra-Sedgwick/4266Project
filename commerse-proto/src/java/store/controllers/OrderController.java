@@ -182,6 +182,8 @@ public class OrderController extends HttpServlet {
             order.setUser(user);
             order.setOrderItems(cart.getOrderItems());
             order.setTaxRate(0.06);
+            order.setTotalCost();
+            double t = order.getTotalCost();
             session.setAttribute("currentOrder", order);
             
             getServletContext()

@@ -6,7 +6,9 @@
         
         <section>
             <h1>Administrator Menu</h1>
-            <button name="all-orders" value="Display All Orders">Display All Orders</button>
+            <form>
+                <button name="action" formaction="AdminController" value="viewOrders">Display All Orders</button>
+            </form>
         </section>
                     
 

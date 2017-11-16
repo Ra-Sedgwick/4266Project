@@ -64,11 +64,7 @@ public class Order {
         return taxRate;
     }
     
-    public void setTotalCost(double _totalCost) {
-        totalCost = _totalCost;
-    }
-    
-    public double getTotalCost() {
+    public void setTotalCost() {
         
         totalCost = 0.0;
         
@@ -76,6 +72,19 @@ public class Order {
             totalCost += (i.getProduct().getPrice() * i.getQuantity());
         }
         
+        totalCost = totalCost + (totalCost * taxRate);
+        int x = 10;
+    }
+    
+    public double getSubTotal() {
+        double subTotal = 0.0;
+        for (OrderItem i : orderItems) {
+            subTotal += (i.getProduct().getPrice() * i.getQuantity());
+        }
+        return subTotal;
+    }
+    
+    public double getTotalCost() {   
         return totalCost;
     }
     

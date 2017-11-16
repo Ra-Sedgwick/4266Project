@@ -8,6 +8,10 @@
         <servlet-name>OrderController</servlet-name>
         <servlet-class>store.controllers.OrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>store.controllers.AdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogController</servlet-name>
         <url-pattern>/catalog</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
         <url-pattern>/OrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/AdminController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

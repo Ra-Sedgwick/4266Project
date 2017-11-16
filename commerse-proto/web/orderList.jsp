@@ -15,10 +15,13 @@
                     <th>Total</th>
                 </tr>
                 <c:forEach var="order" items="${orderList}">
-                    <td>${order.orderNumber}</td>
-                    <td>${order.user.firstName}</td>
-                    <td>${order.date}</td>
-                    <td>${order.totalCost}</td>
+                    <tr>
+                        <td>${order.orderNumber}</td>
+                        <td>${order.user.firstName}</td>
+                        <td>${order.date}</td>
+                        <td>$${currentOrder.totalCost + (currentOrder.totalCost * currentOrder.taxRate)}</td>
+                    </tr>
+                    
                 </c:forEach>
             </table>
         </section>
