@@ -4,6 +4,6 @@
         <p>&copy; Roberts Just Bike Pedals LLC</p>
     </footer>
 
-    <jsp:include page="/includes/viewSessions.jsp" />
+    <jsp:include page="/includes/debug.jsp" />
     
 </html>

@@ -20,6 +20,35 @@ import store.business.Product;
  */
 public class OrderItemDB {
     
+    public static int insert(OrderItem orderItem) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "INSERT INTO `Order`"
+                + "(OrderNumber, ProductCode, Quantity) "
+                + "Values (?, ?, ?)";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, orderItem.getOrderNumber());
+            ps.setInt(2, orderItem.getProduct().getProductCode());
+            ps.setInt(3, orderItem.getQuantity());
+            
+            return ps.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
     public static ArrayList<OrderItem> getOrderItems(String orderNumber) {
             
         ArrayList<OrderItem> orderItems = new ArrayList<>();

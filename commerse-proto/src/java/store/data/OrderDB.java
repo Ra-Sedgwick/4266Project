@@ -21,6 +21,40 @@ import store.business.User;
 public class OrderDB {
     
     
+    public static int insert(Order order) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "INSERT INTO `Order`"
+                + "(OrderNumber, date, user_id, tax_rate, total_cost, paid) "
+                + "Values (?, ?, ?, ?, ?, ?)";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, order.getOrderNumber());
+            ps.setDate(2, java.sql.Date.valueOf(order.getDate().toString()));
+            ps.setInt(3, order.getUser().getId());
+            ps.setDouble(4, order.getTaxRate());
+            ps.setDouble(5, order.getTotalCost());
+            ps.setBoolean(6, order.getIsPaid());
+            
+            return ps.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+                
+        
+    }
+    
     public static ArrayList<Order> getOrders(int userID) {
         
         ArrayList<Order> orders = new ArrayList<>();
@@ -44,7 +78,7 @@ public class OrderDB {
                     order = new Order();
                     user = UserDB.getUser(rs.getString("User_ID"));
                     
-                    orderItems = new ArrayList<OrderItem>();
+                    orderItems = new ArrayList<>();
                     orderItems = OrderItemDB.getOrderItems(rs.getString("OrderNumber"));
                     
                     order.setUser(user);

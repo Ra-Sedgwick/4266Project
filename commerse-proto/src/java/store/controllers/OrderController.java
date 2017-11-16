@@ -194,15 +194,12 @@ public class OrderController extends HttpServlet {
         
         if (action.equals("viewOrders")) {
             
-            //User sessionUser = (User) session.getAttribute("theUser");
-            User sessionUser = UserDB.getUser("1");
+            User sessionUser = (User) session.getAttribute("theUser");
+            //User sessionUser = UserDB.getUser("1");
 
 
             
-            if (sessionUser == null) {
-                response.sendRedirect("catalog");
-            }
-            else {
+            if (sessionUser != null) {
                 ArrayList<Order> orders = OrderDB.getOrders(sessionUser.getId());
 
                 session.setAttribute("orderList", orders);

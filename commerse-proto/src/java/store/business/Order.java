@@ -36,7 +36,7 @@ public class Order {
         date = _date;
     }
     
-    public Date getdate() {
+    public Date getDate() {
         return date;
     }
     
