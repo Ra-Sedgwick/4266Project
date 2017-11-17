@@ -2,13 +2,14 @@
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
         <h1>Login</h1>
-        <form action="j_security_check" method="get">
+        <form action="LoginController" method="get">
             <label>User Name</label>
-            <input type="text" name="j_username"><br>
+            <input type="text" name="username"><br>
             <label>Password</label>
-            <input type="text" name="j_password"><br>
+            <input type="text" name="password"><br>
             <label>&nbsp;</label>
-            <input type="submit" value="Login">
+            <input type="submit">
+            <input type="hidden" name="action" value="authenticate"/>
         </form>
     </main>
 <jsp:include page="includes/footer.jsp" />

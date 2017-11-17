@@ -106,6 +106,45 @@ public class UserDB {
         }
     }
     
+    public static User getUserByEmail(String email) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM User "
+                + "WHERE Email = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            User user = null;
+            
+            if (rs.first()) {
+                user = new User();
+                user.setId(rs.getInt("UserID"));
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setEmail(rs.getString("Email"));
+                user.setAddressField_1(rs.getString("Address_1"));
+                user.setAddressField_2(rs.getString("Address_2"));
+                user.setCity(rs.getString("City"));
+                user.setState(rs.getString("State"));
+                user.setPostCode(rs.getString("Postal_Code"));
+                user.setCountry(rs.getString("Country"));
+                user.setPassword(rs.getString("Password"));
+            }
+            return user;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
     public static void addUser(
             String lastName,
             String firstName,
