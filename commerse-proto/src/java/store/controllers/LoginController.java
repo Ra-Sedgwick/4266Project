@@ -36,46 +36,56 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        String action = request.getParameter("action");
         
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        if (username != null && password != null) {
-            
-            User user = UserDB.getUserByEmail(username);
-            
-            if (user != null) {
-                
-                // Redirect with user not found
-                getServletContext()
-                    .getRequestDispatcher("/orderList.jsp")
-                    .forward(request, response);
-            }
-            
-            
-            if (password.equals(user.getPassword())) {
-                
-                session.setAttribute("theUser", user);
-                
-                getServletContext()
-                    .getRequestDispatcher("/orderList.jsp")
-                    .forward(request, response);
-            }
-            
-            else {
-                
-                // Redirect with wrong password
-                getServletContext()
-                    .getRequestDispatcher("/orderList.jsp")
-                    .forward(request, response);
-            }
-            
-        }
+        if (action.equals("signOut")) {
+            session.removeAttribute("theUser");
+            getServletContext()
+                .getRequestDispatcher("/")
+                .forward(request, response);
+        } else {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String errorMessage = "";
 
-                
-                
-        
-        
+            if (username != null && password != null) {
+
+                User user = UserDB.getUserByEmail(username);
+
+                if (user == null) {
+
+                    session.setAttribute("loginError", "Username not found");
+
+                    // Redirect with user not found
+                    getServletContext()
+                        .getRequestDispatcher("/login.jsp")
+                        .forward(request, response);
+
+                }
+
+
+                if (password.equals(user.getPassword())) {
+
+                    session.setAttribute("theUser", user);
+                    session.removeAttribute("loginError");
+
+                    getServletContext()
+                        .getRequestDispatcher("/")
+                        .forward(request, response);
+                }
+
+                else {
+
+                    session.setAttribute("loginError", "IncorrectPassword");
+
+                    // Redirect with wrong password
+                    getServletContext()
+                        .getRequestDispatcher("/login.jsp")
+                        .forward(request, response);
+                }
+
+            }
+        }  
         
     }
 

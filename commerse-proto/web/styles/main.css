@@ -19,35 +19,12 @@ li {
     font-size: 1.2em;
 }
 
-header {
-    text-align: center;
-    background-color: lightslategrey;
-    display: Inline;
-    margin-bottom: 100px;
-}
-
-#login-msg {
-    float: right;
-    
-}
-
-header > h1 > img {
-    margin-right: 30px;
+#user-email {
+    padding-right: 5px;
 }
 
 
-nav {
-    background-color: lightsteelblue;
-    text-align: center;
-    margin: 10px;
-    border-style: solid;   
-}
 
-nav > a {
-    margin: 0px 10px 0px 10px;
-    font-size: 1.5em;
-
-}
 
 main {
     display: flex;
@@ -144,6 +121,4 @@ input, label {
     
 }
 
-.line-break {
-    margin-top: 45px;
-}
+                                                          

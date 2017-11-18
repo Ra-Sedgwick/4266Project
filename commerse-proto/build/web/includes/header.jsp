@@ -5,8 +5,12 @@
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+              rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+              crossorigin="anonymous">
         <link rel="stylesheet" href="styles/main.css">
         <!--    jQuery CDN      -->
         <script
@@ -21,11 +25,18 @@
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous">
         </script>
-
+        
+        
+        <!--        Bootstrap-      -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        crossorigin="anonymous"></script>
+        
+        
         <!--    Site Javascript     -->
         <script src="scripts/site.js"> </script>
     </head>
-    <header>
+<!--    <header>
         <c:choose>
             <c:when test="${theUser.email != null}">
                 <p id="login-msg">${theUser.email}"</p>
@@ -34,12 +45,81 @@
                 <p id="login-msg">Not logged in...</p>
             </c:otherwise>
         </c:choose>
-<!--                <p id="login-msg">${theUser.email}</p>-->
-<!--        <h1><img src='pedal.jpg' alt="" style="width:100px">Just Bike Pedals!</h1>   -->
-    </header>
-    <nav>
+    </header>-->
+<!--    <nav>
         <a href="login.jsp">Log In</a>
         <a href="cart.jsp">Cart</a>
         <a href="OrderController?action=viewOrders">My Orders</a>
+        <a href="admin.jsp">Admin</a>
+        <c:choose>
+            <c:when test="${theUser.email != null}">
+                <p id="login-msg">${theUser.email}</p>
+            </c:when>
+            <c:otherwise>
+                <p id="login-msg">Not logged in...</p>
+            </c:otherwise>
+        </c:choose>
+    </nav>-->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <a class="navbar-brand" href="#">Just Pedals</a>
+        </div>
+        
+        
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Cart</a></li>
+                      <li><a href="#">Orders</a></li>
+
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Admin</a></li>
+                    </ul>
+                </li> 
+            </ul>
+            
+            <ul class="nav navbar-nav pull-right">
+  
+                <c:choose>
+                    <c:when test="${theUser.email != null}">
+                        <form action="LoginController">
+
+                            <input type="hidden" name="action" value="signOut" />
+                            <li>
+                                <span id="user-email">${theUser.email}</span>
+                                <button type="submit" class="btn btn-default navbar-btn">Sign Out</button>
+                            </li>
+                        </form>
+
+                    </c:when>
+                    <c:otherwise>
+                        <form action="./login.jsp">
+                            <li>
+                                <button type="submit" class="btn btn-default navbar-btn">Sign In</button>
+                            </li>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+
+                
+                
+            </ul>
+          
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
     <body>
