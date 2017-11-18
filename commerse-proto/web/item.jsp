@@ -3,6 +3,7 @@
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
             <h2>Current Item</h2>
+            <hr>
             
             <figure>
                 <img src=${product.getImageURL()} style='height:200px'>
@@ -12,15 +13,21 @@
                     
                 </figcaption>
             </figure>
-            <form action="catalog.jsp">
-                <input class="item-button" type="submit" value="<- Back" />
-            </form>
-            <form action="OrderController?action=updateCart" method="post">
-                <input type="hidden" name="productList[]" value="${product.getProductCode()}" />
-                <input type="hidden" name="quantity[]" value="1" />
+                    
+                    <section class="button-group">
+                        <form action="OrderController?action=updateCart" method="post">
+                            <input type="hidden" name="productList[]" value="${product.getProductCode()}" />
+                            <input type="hidden" name="quantity[]" value="1" />
 
-                <input class="item-button" type="submit" value="add-item" />
-            </form>
+                            <button id="add-button" class="btn btn-success" type="submit">Add</button>
+                        </form>
+                        </form>
+                        <form action="catalog.jsp">
+                            <button class="btn btn-primary" type="submit">Back</button>
+                        </form>
+                    </section>
+            
+            
             
         </section>
     </main>

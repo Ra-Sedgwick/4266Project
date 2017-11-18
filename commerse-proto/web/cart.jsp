@@ -3,18 +3,32 @@
     <main>
         
         <jsp:include page="includes/site-navigation.jsp" />
-        
-        <section id="cart-container">
-            <form action="OrderController?action=updateCart" method="post" class="cart-button">
+        <section>
             <h2>Your Cart</h2>
+            <hr>
+                   <form action="OrderController?action=updateCart" method="post">
+
             <jsp:include page="includes/cart-container.jsp" />
-                <button type="submit">Update Cart</button>
-                <button type="submit" formaction="OrderController?action=checkout">Check Out</button>   
+            <section class="button-group">
+                <button type="submit" class="btn btn-primary">Update Cart</button>
+                <button type="submit" class="btn btn-success" formaction="OrderController?action=checkout">Check Out</button>
+            </section>
+                   
             </form>
         </section>
+        
+ 
         
     </main>
             
 <jsp:include page="includes/footer.jsp" />
 
 
+<!--        <section id="cart-container">
+            <form action="OrderController?action=updateCart" method="post" class="cart-button">
+            <h2>Your Cart</h2>
+            <jsp:include page="includes/cart-container.jsp" />
+                <button type="submit">Update Cart</button>
+                <button type="submit" formaction="OrderController?action=checkout">Check Out</button>   
+            </form>
+        </section>-->

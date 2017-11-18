@@ -8,9 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-              rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
-              crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" integrity="sha384-+ENW/yibaokMnme+vBLnHMphUYxHs34h9lpdbSLuAwGkOKFRl4C34WkjazBtb7eT" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/main.css">
         <!--    jQuery CDN      -->
         <script
@@ -70,7 +68,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-            <a class="navbar-brand" href="#">Just Pedals</a>
+            <a class="navbar-brand" href="./">Just Pedals</a>
         </div>
         
         
@@ -93,6 +91,14 @@
 
                             <input type="hidden" name="action" value="signOut" />
                                 <span id="user-email">${theUser.email}</span>
+                                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="cart.jsp">Cart</a></li>
+                                  <li><a href="OrderController?action=viewOrders">Orders</a></li>
+
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href="adming.jsp">Admin</a></li>
+                                </ul>
                                 <button type="submit" class="btn btn-default navbar-btn">Sign Out</button>
 
                         </form>
@@ -100,14 +106,7 @@
                     </c:when>
                     <c:otherwise>
                         <form action="./login.jsp">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#">Cart</a></li>
-                                  <li><a href="#">Orders</a></li>
-
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="#">Admin</a></li>
-                                </ul>
+                                
                                 <button type="submit" class="btn btn-default navbar-btn">Sign In</button>
 
                         </form>
