@@ -80,41 +80,40 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Cart</a></li>
-                      <li><a href="#">Orders</a></li>
-
-                      <li role="separator" class="divider"></li>
-                      <li><a href="#">Admin</a></li>
-                    </ul>
-                </li> 
+                
             </ul>
             
             <ul class="nav navbar-nav pull-right">
   
+
+                <li>
                 <c:choose>
                     <c:when test="${theUser.email != null}">
                         <form action="LoginController">
 
                             <input type="hidden" name="action" value="signOut" />
-                            <li>
                                 <span id="user-email">${theUser.email}</span>
                                 <button type="submit" class="btn btn-default navbar-btn">Sign Out</button>
-                            </li>
+
                         </form>
 
                     </c:when>
                     <c:otherwise>
                         <form action="./login.jsp">
-                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Cart</a></li>
+                                  <li><a href="#">Orders</a></li>
+
+                                  <li role="separator" class="divider"></li>
+                                  <li><a href="#">Admin</a></li>
+                                </ul>
                                 <button type="submit" class="btn btn-default navbar-btn">Sign In</button>
-                            </li>
+
                         </form>
                     </c:otherwise>
                 </c:choose>
-
+                </li>
                 
                 
             </ul>
