@@ -17,6 +17,7 @@ html, body {
     padding: 0;
 }
 
+
 hr {
     border: none;
     height: 1px;
@@ -191,11 +192,19 @@ body > nav > div > div.navbar-header > a {
     font-size: 1.5em;
 }
 
+#checkoutError {
+    color: #f59d00;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 25px
+}
+
 .navbar {
     border-radius:0 !important;
 }
 
 .nav-button {
+    margin-right: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 5px;

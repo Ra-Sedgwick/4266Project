@@ -78,7 +78,7 @@ public class OrderDB {
             if (rs.first()) {
                 do {
                     order = new Order();
-                    user = UserDB.getUser(rs.getString("User_ID"));
+                    user = UserDB.getUser(rs.getInt("User_ID"));
                     
                     orderItems = new ArrayList<>();
                     orderItems = OrderItemDB.getOrderItems(rs.getString("OrderNumber"));
@@ -128,7 +128,7 @@ public class OrderDB {
             if (rs.first()) {
                 do {
                     order = new Order();
-                    user = UserDB.getUser(rs.getString("User_ID"));
+                    user = UserDB.getUser(rs.getInt("User_ID"));
                     
                     orderItems = new ArrayList<>();
                     orderItems = OrderItemDB.getOrderItems(rs.getString("OrderNumber"));

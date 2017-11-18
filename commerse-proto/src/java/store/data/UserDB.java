@@ -67,7 +67,7 @@ public class UserDB {
         }
     }    
     
-    public static User getUser(String id) {
+    public static User getUser(int id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
@@ -77,7 +77,7 @@ public class UserDB {
                 + "WHERE UserId = ?";
         try {
             ps = connection.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             User user = null;
             

@@ -22,8 +22,9 @@
                     </c:otherwise>
                 </c:choose>
                 <label>&nbsp;</label>
-                <input class="btn btn-success" type="submit">
-                <input type="hidden" name="action" value="authenticate"/>
+                <button class="btn btn-warning" type="submit" value="register" name="action">Register </button>
+                <button class="btn btn-success" type="submit"  value="authenticate" name="action">Submit</button>
+<!--                <input type="hidden" name="action" value="authenticate"/>-->
             </form>
         </section>
         

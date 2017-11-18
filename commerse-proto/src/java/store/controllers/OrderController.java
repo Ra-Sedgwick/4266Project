@@ -173,9 +173,16 @@ public class OrderController extends HttpServlet {
         
         if (action.equals("checkout")) {
             
-            List<User> users = UserDB.getAllUsers();
-            User user = users.get(0); 
-            session.setAttribute("theUser", user);
+            User user = (User) session.getAttribute("theUser");
+            
+            if (user == null) {
+                request.setAttribute("checkoutError", "Error");
+                getServletContext()
+                    .getRequestDispatcher("/cart.jsp")
+                    .forward(request, response);
+            }
+
+            
             Order order = new Order();
             order.setOrderNumber(UUID.randomUUID().toString());
             order.setDate( new Date() );

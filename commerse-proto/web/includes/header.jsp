@@ -82,7 +82,7 @@
             </ul>
             
             <ul class="nav navbar-nav pull-right">
-  
+       
                 
                 <li>
                 <c:choose>
@@ -91,6 +91,7 @@
 
                             <input type="hidden" name="action" value="signOut" />
                                 <span id="user-email">${theUser.email}</span>
+                                <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>
                                 <a href="#" class="dropdown-toggle btn btn-default nav-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="cart.jsp">Cart</a></li>
@@ -99,15 +100,15 @@
                                   <li role="separator" class="divider"></li>
                                   <li><a href="admin.jsp">Admin</a></li>
                                 </ul>
-                                <button type="submit" class="btn btn-default navbar-btn nav-button">Sign Out</button>
+                                <button type="submit" class="btn btn-default nav-button">Sign Out</button>
 
                         </form>
 
                     </c:when>
                     <c:otherwise>
                         <form action="./login.jsp">
-                                
-                                <button type="submit" class="btn btn-default navbar-btn">Sign In</button>
+                                <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>
+                                <button type="submit" class="btn btn-default nav-button">Sign In</button>
 
                         </form>
                     </c:otherwise>

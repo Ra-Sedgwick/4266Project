@@ -41,9 +41,18 @@ public class LoginController extends HttpServlet {
         if (action.equals("signOut")) {
             session.removeAttribute("theUser");
             getServletContext()
-                .getRequestDispatcher("/")
+                .getRequestDispatcher("./")
                 .forward(request, response);
-        } else {
+        } 
+        else if (action.equals("register")) {
+            getServletContext()
+                .getRequestDispatcher("./register.jsp")
+                .forward(request, response);
+        }
+        else {
+            
+           
+            
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
