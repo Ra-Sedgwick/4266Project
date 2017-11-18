@@ -24,9 +24,9 @@
         
         <hr class="line-break">
 
-        <p> Your card will be charged a total of: \$${currentOrder.totalCost} </p>
+        <p> Your card will be charged a total of: <span id="payment-total">$${currentOrder.totalCost}<span> </p>
             
-        <input type="submit" value="Confirm Payment" name="purchase" />
+        <button type="submit"  class="btn btn-warning"name="purchase">Confirm Payment</button>
         
     </form>
     

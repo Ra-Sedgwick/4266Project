@@ -46,7 +46,6 @@ public class LoginController extends HttpServlet {
         } else {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            String errorMessage = "";
 
             if (username != null && password != null) {
 
@@ -76,7 +75,7 @@ public class LoginController extends HttpServlet {
 
                 else {
 
-                    session.setAttribute("loginError", "IncorrectPassword");
+                    session.setAttribute("loginError", "Incorrect Password");
 
                     // Redirect with wrong password
                     getServletContext()

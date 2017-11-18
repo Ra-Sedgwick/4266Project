@@ -83,7 +83,7 @@
             
             <ul class="nav navbar-nav pull-right">
   
-
+                
                 <li>
                 <c:choose>
                     <c:when test="${theUser.email != null}">
@@ -91,15 +91,15 @@
 
                             <input type="hidden" name="action" value="signOut" />
                                 <span id="user-email">${theUser.email}</span>
-                                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle btn btn-default nav-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="cart.jsp">Cart</a></li>
                                   <li><a href="OrderController?action=viewOrders">Orders</a></li>
 
                                   <li role="separator" class="divider"></li>
-                                  <li><a href="adming.jsp">Admin</a></li>
+                                  <li><a href="admin.jsp">Admin</a></li>
                                 </ul>
-                                <button type="submit" class="btn btn-default navbar-btn">Sign Out</button>
+                                <button type="submit" class="btn btn-default navbar-btn nav-button">Sign Out</button>
 
                         </form>
 
@@ -113,7 +113,6 @@
                     </c:otherwise>
                 </c:choose>
                 </li>
-                
                 
             </ul>
           

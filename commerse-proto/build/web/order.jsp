@@ -18,12 +18,12 @@
             </section>
                 <c:choose>
                     <c:when test="${currentOrder.getIsPaid()}">
-                        <p>Paid In Full</p>
+                        <p id="payment-flag">Paid In Full</p>
                     </c:when>
                     <c:otherwise>
                         <form class="cart-button">
-                            <button type="submit" formaction="cart.jsp">Back To Cart</button>
-                            <button type="submit" formaction="payment.jsp">Purchase</button>   
+                            <button type="submit" class="btn btn-primary" formaction="cart.jsp">Back To Cart</button>
+                            <button type="submit" class="btn btn-success" formaction="payment.jsp">Purchase</button>   
                         </form>
                     </c:otherwise>
                 </c:choose>

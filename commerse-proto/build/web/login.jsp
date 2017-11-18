@@ -5,15 +5,16 @@
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
             <h1>Login</h1>
+            <hr>
             <form action="LoginController" method="get">
                 <label>User Name</label>
                 <input type="text" name="username"><br>
                 <label>Password</label>
-                <input type="text" name="password"><br>
+                <input type="text" name="password"><br><br>
                 <c:choose>
                     <c:when test="${loginError != null}">
                         <label>&nbsp;</label>
-                        <p id="loginError">${loginError}</p>
+                        <p class="loginError">${loginError}</p>
                     </c:when>
                     <c:otherwise>
                         <label>&nbsp;</label>
@@ -21,7 +22,7 @@
                     </c:otherwise>
                 </c:choose>
                 <label>&nbsp;</label>
-                <input type="submit">
+                <input class="btn btn-success" type="submit">
                 <input type="hidden" name="action" value="authenticate"/>
             </form>
         </section>

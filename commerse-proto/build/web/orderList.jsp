@@ -7,6 +7,7 @@
         
         <section>
             <h1>Order List</h1> <br>
+            <hr>
             <table id="order-table">
                 <tr>
                     <th>Order Number</th>
