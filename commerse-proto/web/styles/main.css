@@ -45,7 +45,9 @@ li {
     color: white;
 }
 
-
+p {
+    font-size: 1.15em;
+}
 
 
 main {
@@ -227,4 +229,8 @@ button {
 
 #item-buttons {
     display: flex;
+}
+
+.list-group {
+    width: 25%;
 }
