@@ -35,7 +35,9 @@ public class RegisterController extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        session.removeAttribute("registerError");
         User user = new User();
+        boolean incompleteForm = false;
         
         user.setFirstName(request.getParameter("firstName"));
         user.setLastName(request.getParameter("lastName"));
@@ -48,11 +50,57 @@ public class RegisterController extends HttpServlet {
         user.setCountry(request.getParameter("country"));
         user.setPassword(request.getParameter("password"));
         
-        UserDB.insert(user);
+        if (user.getFirstName() == "" ||
+            user.getLastName()  == "" ||
+            user.getEmail()     == "" ||
+            user.getPassword()  == "" 
+        ) {
+            incompleteForm = true;
+        }
+        
+        // Check for current user;
+        
+        if (incompleteForm) {
+            session.setAttribute("registerError", "Fields marked with a (*) must be completed");
+            
+            getServletContext()
+                .getRequestDispatcher("/register.jsp")
+                .forward(request, response);
+        }
+        else if (validUser(user)) {
+            
+            UserDB.insert(user);
+            session.setAttribute("theUser", UserDB.getUserByEmail(user.getEmail()));
+        
+            getServletContext()
+                    .getRequestDispatcher("/index.jsp")
+                    .forward(request, response);
+        }
+        
+        else {
+            
+            session.setAttribute("registerError", "Email already in use, try again.");
+            
+            getServletContext()
+                .getRequestDispatcher("/register.jsp")
+                .forward(request, response);
+        }
+        
+        
         
     }
 
-   
+   private static boolean validUser(User _user) {
+       
+       User user = UserDB.getUserByEmail(_user.getEmail());
+       
+       if (user != null) {
+           return false;
+       }
+       
+       return true;
+       
+   }
      
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
