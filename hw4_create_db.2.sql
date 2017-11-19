@@ -38,7 +38,7 @@ CREATE TABLE Product (
 
 DROP TABLE IF EXISTS Order_Item;
 CREATE TABLE Order_Item (
-	OrderNumber int(50) NOT NULL,
+	OrderNumber varchar(50) NOT NULL,
     ProductCode int(11) NOT NULL,
     Quantity int(11) NOT NULL,
     PRIMARY KEY (OrderNumber, ProductCode)
@@ -46,7 +46,7 @@ CREATE TABLE Order_Item (
 
 DROP TABLE IF EXISTS `Order`;
 CREATE TABLE `Order` (
-	 OrderNumber int(50) NOT NULL AUTO_INCREMENT,
+	 OrderNumber varchar(50) NOT NULL,
 	 Date date NOT NULL,
 	 User_ID int(11) NOT NULL,
 	 Tax_Rate float(11,2) NOT NULL,
@@ -194,12 +194,14 @@ VALUES (
  );
 
 INSERT INTO `Order` (
+	OrderNumber,
 	date,
     user_id,
     tax_rate,
     total_cost,
     paid)
 Values (
+	'123',
 	NOW(),
     1,
     .06,
@@ -213,7 +215,7 @@ INSERT INTO Order_Item (
     Quantity
 )
 Values (
-	1,
+	'1',
     1,
     1
 );

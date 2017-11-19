@@ -6,8 +6,9 @@
         
         <section>
             <h1>Administrator Menu</h1>
+            <hr>
             <form>
-                <button name="action" formaction="AdminController" value="viewOrders">Display All Orders</button>
+                <button class="btn btn-warning" name="action" formaction="AdminController" value="viewOrders">Display All Orders</button>
             </form>
         </section>
                     
