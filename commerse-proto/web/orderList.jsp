@@ -6,25 +6,28 @@
         <jsp:include page="includes/site-navigation.jsp" />
         
         <section>
-            <h1>Order List</h1> <br>
+            <h1>Order List</h1>
             <hr>
-            <table id="order-table">
-                <tr>
-                    <th>Order Number</th>
-                    <th>Customer</th>
-                    <th>Order Date</th>
-                    <th>Total</th>
-                </tr>
-                <c:forEach var="order" items="${orderList}">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
                     <tr>
-                        <td>${order.orderNumber}</td>
-                        <td>${order.user.firstName}</td>
-                        <td>${order.date}</td>
-                        <td>$${order.totalCost}</td>
+                        <th>Order Number</th>
+                        <th>Customer</th>
+                        <th>Order Date</th>
+                        <th>Total</th>
                     </tr>
-                    
-                </c:forEach>
-            </table>
+                    <c:forEach var="order" items="${orderList}">
+                        <tr>
+                            <td>${order.orderNumber}</td>
+                            <td>${order.user.firstName}</td>
+                            <td>${order.date}</td>
+                            <td>$${order.totalCost}</td>
+                        </tr>
+
+                    </c:forEach>
+                </table>
+            </div>
+            
         </section>
 
     </main>

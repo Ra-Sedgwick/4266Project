@@ -14,16 +14,15 @@
                 </figcaption>
             </figure>
                     
-                    <section class="button-group">
+                    <section id="item-buttons">
+                        <form>                        <form action="catalog.jsp">
+                            <button class="btn btn-primary" type="submit">Back</button>
+                        </form>
                         <form action="OrderController?action=updateCart" method="post">
                             <input type="hidden" name="productList[]" value="${product.getProductCode()}" />
                             <input type="hidden" name="quantity[]" value="1" />
 
                             <button id="add-button" class="btn btn-success" type="submit">Add</button>
-                        </form>
-                        </form>
-                        <form action="catalog.jsp">
-                            <button class="btn btn-primary" type="submit">Back</button>
                         </form>
                     </section>
             

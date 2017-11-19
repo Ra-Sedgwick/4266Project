@@ -7,9 +7,9 @@
             <h1>Login</h1>
             <hr>
             <form action="LoginController" method="get">
-                <label>User Name</label>
+                <label>Email: </label>
                 <input type="text" name="username"><br>
-                <label>Password</label>
+                <label>Password: </label>
                 <input type="text" name="password"><br><br>
                 <c:choose>
                     <c:when test="${loginError != null}">

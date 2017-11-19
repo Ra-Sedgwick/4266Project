@@ -5,22 +5,22 @@
 
     <hr>
     
-    <form action="OrderController?action=confirmOrder" method="post">
+    <form  class="form-group" action="OrderController?action=confirmOrder" method="post">
         
         <label for="masterCard">Card Type: </label>
-        <select name="Credit Card Type" id="card-type">
+        <select class="form-control" name="Credit Card Type" id="card-type">
             <option value="masterCard">Master Card</option>
             <option value="visa">Visa</option>
         </select> <br>
         
         <label for="cardNumber">Card Number: </label>
-        <input type="text" id="cardNumber" name="Card Number" value="No dashes" /> <br>
+        <input type="text" class="form-control label-offset" id="cardNumber" name="Card Number" /> <br>
         
         <label for="datepicker">Date: </label>
-        <input type="text" id="datepicker" /></br>
+        <input type="text" class="form-control label-offset" id="datepicker" /></br>
         
         <label for="cvv">CVV (3-Digit) : </label>
-        <input type="text" id="cvv" /> </br>
+        <input type="text" class="form-control label-offset" id="cvv" /> </br>
         
         <hr class="line-break">
 

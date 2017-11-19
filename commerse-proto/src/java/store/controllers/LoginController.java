@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
         if (action.equals("signOut")) {
             session.removeAttribute("theUser");
             getServletContext()
-                .getRequestDispatcher("./")
+                .getRequestDispatcher("/")
                 .forward(request, response);
         } 
         else if (action.equals("register")) {
