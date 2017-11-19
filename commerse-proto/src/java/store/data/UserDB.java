@@ -18,6 +18,48 @@ import store.business.User;
  */
 public class UserDB {
     
+    public static int insert(User user) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "INSERT INTO User"
+                + "(LastName, FirstName, Email, Address_1, Address_2, City, "
+                + "State, Postal_Code, Country, Password) "
+                + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, user.getLastName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getAddressField_1());
+            ps.setString(5, user.getAddressField_2());
+            ps.setString(6, user.getCity());
+            ps.setString(7, user.getState());
+            ps.setString(8, user.getPostCode());
+            ps.setString(9, user.getCountry());
+            ps.setString(10, user.getPassword());
+            
+            return ps.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            UtilDb.closeResultSet(rs);
+            UtilDb.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+                
+        
+        
+        
+    }
+    
     public static ArrayList<User> getAllUsers() {
         
         ArrayList<User> users = new ArrayList<User>();
@@ -50,7 +92,6 @@ public class UserDB {
                         user.setPostCode(rs.getString("Postal_Code"));
                         user.setCountry(rs.getString("Country"));
                         user.setPassword(rs.getString("Password"));
-                        user.setUserRole(rs.getString("User_Role"));
                         users.add(user);
                 } while (rs.next());
             }

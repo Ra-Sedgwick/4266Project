@@ -22,17 +22,9 @@ public class User {
     private String country;
     private int id;
     private String password;
-    private String userRole;
     
     public User() {};
-    
-    public void setUserRole(String _userRole) {
-        userRole = _userRole;
-    }
-    
-    public String getUserRole() {
-        return userRole;
-    }
+
     
     public void setId(int _id) {
         id = _id;

@@ -18,7 +18,6 @@ CREATE TABLE User (
   Postal_Code int(11) DEFAULT NULL,
   Country varchar(50) DEFAULT NULL,
   Password varchar(50) NOT NULL,
-  User_Role varchar(50) NOT NULL, 
   PRIMARY KEY (`UserID`)
 );
 
@@ -76,6 +75,7 @@ Values ('johnSmith', 'toor');
 INSERT INTO userRole (userName, roleName)
 Values ('johnSmith', 'admin');
 
+
 INSERT INTO User (
 	LastName,
     FirstName,
@@ -86,8 +86,7 @@ INSERT INTO User (
     State,
     Postal_Code,
     Country,
-    Password,
-	User_Role)
+    Password)
 Values (
 	'Smith',
     'John',
@@ -98,9 +97,10 @@ Values (
     'North Carolina',
     '55555',
     'USA', 
-    'toor',
-    'admin'
+    'toor'
 );
+
+
 
 INSERT INTO Product (
     Name,

@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
         } 
         else if (action.equals("register")) {
             getServletContext()
-                .getRequestDispatcher("./register.jsp")
+                .getRequestDispatcher("/register.jsp")
                 .forward(request, response);
         }
         else {
