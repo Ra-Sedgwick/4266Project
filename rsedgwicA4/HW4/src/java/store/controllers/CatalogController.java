@@ -5,7 +5,7 @@
  */
 package store.controllers;
 
-import stron.data.ProductDB;
+import store.data.ProductDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.Product;
+import store.data.DbSetup;
 
 
 /**
@@ -30,6 +31,8 @@ public class CatalogController extends HttpServlet {
     public void doGet(HttpServletRequest request, 
             HttpServletResponse response)
             throws ServletException, IOException {
+        
+        DbSetup.initializeTables();
         
         List<Product> pp = ProductDB.getAllProducts();
         

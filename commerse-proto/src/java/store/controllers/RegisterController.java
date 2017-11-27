@@ -50,13 +50,14 @@ public class RegisterController extends HttpServlet {
         user.setCountry(request.getParameter("country"));
         user.setPassword(request.getParameter("password"));
         
-        if (user.getFirstName() == "" ||
-            user.getLastName()  == "" ||
-            user.getEmail()     == "" ||
-            user.getPassword()  == "" 
+        if (user.getFirstName().equals("") ||
+            user.getLastName().equals("") ||
+            user.getEmail().equals("") ||
+            user.getPassword().equals("") 
         ) {
             incompleteForm = true;
         }
+        
         
         // Check for current user;
         

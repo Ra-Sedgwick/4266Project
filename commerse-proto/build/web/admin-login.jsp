@@ -3,6 +3,7 @@
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
         <h1>Admin Login</h1><br>
+        <hr>
         <form action="j_security_check" method="get">
             <label>User Name</label>
             <input type="text" name="j_username"><br>

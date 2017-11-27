@@ -43,8 +43,8 @@ public class OrderItemDB {
             System.out.println(e);
             return 0;
         } finally {
-            UtilDb.closeResultSet(rs);
-            UtilDb.closePreparedStatement(ps);
+            DbUtil.closeResultSet(rs);
+            DbUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }
@@ -86,8 +86,8 @@ public class OrderItemDB {
             System.out.println(e);
             return null;
         } finally {
-            UtilDb.closeResultSet(rs);
-            UtilDb.closePreparedStatement(ps);
+            DbUtil.closeResultSet(rs);
+            DbUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
     }

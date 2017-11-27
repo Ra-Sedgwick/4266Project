@@ -39,7 +39,8 @@ public class LoginController extends HttpServlet {
         String action = request.getParameter("action");
         
         if (action.equals("signOut")) {
-            session.removeAttribute("theUser");
+            //session.removeAttribute("theUser");
+            session.invalidate();
             getServletContext()
                 .getRequestDispatcher("/")
                 .forward(request, response);

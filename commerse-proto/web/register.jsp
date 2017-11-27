@@ -14,21 +14,21 @@
             <form action="RegisterController" method="POST">
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="firstName">First Name: </label>
+                        <label for="firstName"><sup>*</sup>First Name: </label>
                         <input type="text" class="form-control" name="firstName" id="firstName">
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="lastName">Last Name: </label>
+                        <label for="lastName"><sup>*</sup>Last Name: </label>
                         <input type="text" class="form-control" name="lastName" id="lastName">
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="email">Email: </label>
+                        <label for="email"><sup>*</sup>Email: </label>
                         <input type="email" class="form-control" name="email" id="email">
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="password">Password: </label>
+                        <label for="password"><sup>*</sup>Password: </label>
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
                 </div>

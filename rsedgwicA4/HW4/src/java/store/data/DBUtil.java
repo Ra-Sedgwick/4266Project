@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author rased
  */
-public class UtilDb {
+public class DBUtil {
     public static void closeStatement(Statement s) {
         try {
             if (s != null) {
