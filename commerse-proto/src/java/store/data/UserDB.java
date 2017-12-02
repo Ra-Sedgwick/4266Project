@@ -54,9 +54,6 @@ public class UserDB {
             DbUtil.closePreparedStatement(ps);
             pool.freeConnection(connection);
         }
-                
-        
-        
         
     }
     
@@ -234,6 +231,51 @@ public class UserDB {
             ps.setString(9, user.getCountry());
             ps.setString(10, user.getPassword());
             return ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DbUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+    public static int updateUser(User user) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        
+        String query = "UPDATE User SET " +
+                "LastName = ?, " +
+                "FirstName = ?, " +
+                "Email = ?, " +
+                "Address_1 = ?, " +
+                "Address_2 = ?, " +
+                "City = ?, " +
+                "State = ?, " +
+                "Postal_Code = ?, " +
+                "Country = ?, " +
+                "Password = ? " +
+                "WHERE UserID = ?";
+        
+        try {
+            
+            ps = connection.prepareStatement(query);
+            ps.setString(1, user.getLastName());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getAddressField_1());
+            ps.setString(5, user.getAddressField_2());
+            ps.setString(6, user.getCity());
+            ps.setString(7, user.getState());
+            ps.setString(8, user.getPostCode());
+            ps.setString(9, user.getCountry());
+            ps.setString(10, user.getPassword());
+            ps.setInt(11, user.getId());
+            
+            return ps.executeUpdate();
+            
         } catch (SQLException e) {
             System.out.println(e);
             return 0;

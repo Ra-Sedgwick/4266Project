@@ -162,44 +162,46 @@ public class UserController extends HttpServlet {
         String inputText;
         
         inputText = request.getParameter("firstName");
-        if (!inputText.equals("")); 
+        if (!inputText.isEmpty())
            user.setFirstName(inputText);
         
         inputText = request.getParameter("lastName");
-        if (!inputText.equals("")); 
+        if (!inputText.isEmpty())
            user.setLastName(inputText);
            
         inputText = request.getParameter("email");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setEmail(inputText);
         
-        inputText = request.getParameter("addressField_1");
-        if (!inputText.equals("")); 
+        inputText = request.getParameter("address-1");
+        if (!inputText.isEmpty())
            user.setAddressField_1(inputText);
                    
-        inputText = request.getParameter("addressField_2");
-        if (!inputText.equals("")); 
+        inputText = request.getParameter("address-2");
+        if (!inputText.isEmpty())
            user.setAddressField_2(inputText);       
             
         inputText = request.getParameter("city");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setCity(inputText);
         
         inputText = request.getParameter("state");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setState(inputText);
         
         inputText = request.getParameter("postCode");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setPostCode(inputText);
         
         inputText = request.getParameter("country");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setCountry(inputText);
         
         inputText = request.getParameter("password");
-        if (!inputText.equals(""))
+        if (!inputText.isEmpty())
             user.setPassword(inputText);
+        
+        UserDB.updateUser(user);
     }
     
 }
