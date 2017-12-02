@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.Order;
+import store.business.User;
 import store.data.OrderDB;
+import store.data.UserDB;
 
 /**
  *
@@ -49,6 +51,15 @@ public class AdminController extends HttpServlet {
                 .getRequestDispatcher("/orderList.jsp")
                 .forward(request, response);
             
+        } else if (action.equals("viewUsers")) {
+            
+            ArrayList<User> users = UserDB.getAllUsers();
+            session.setAttribute("userList", users);
+            
+            getServletContext()
+                .getRequestDispatcher("/userList.jsp")
+                .forward(request, response);
+            
         } else {
             
             getServletContext()
@@ -56,6 +67,8 @@ public class AdminController extends HttpServlet {
                 .forward(request, response);
             
         }
+        
+        
     }
 
 
