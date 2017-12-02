@@ -33,6 +33,14 @@ public class UserController extends HttpServlet {
             create(request, response, session);
         }
         
+        if (action.equals("edit")) {
+            edit(request, response, session);
+        }
+        
+        if (action.equals("update")) {
+            update(request, response, session);
+        }
+        
         
     }
 
@@ -72,6 +80,7 @@ public class UserController extends HttpServlet {
         user.setPostCode(request.getParameter("postCode"));
         user.setCountry(request.getParameter("country"));
         user.setPassword(request.getParameter("password"));
+        
         
         if (user.getFirstName().equals("") ||
             user.getLastName().equals("") ||
@@ -124,5 +133,73 @@ public class UserController extends HttpServlet {
        return true;
        
    }
+    
+    public void edit(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
+        throws ServletException, IOException { 
+        
+        String userId = request.getParameter("userId");
+        User user;
+        
+        if (userId == null) {
+            user = (User) session.getAttribute("theUser");
+        } else {
+            int id = Integer.parseInt(userId);
+            user = UserDB.getUser(id);
+        }
+        
+        session.setAttribute("updateUser", user);
+        
+        getServletContext()
+                .getRequestDispatcher("/updateUser.jsp")
+                .forward(request, response);
+    
+    }
+    
+    public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
+        throws ServletException, IOException { 
+        
+        User user = (User) session.getAttribute("updateUser" );
+        String inputText;
+        
+        inputText = request.getParameter("firstName");
+        if (!inputText.equals("")); 
+           user.setFirstName(inputText);
+        
+        inputText = request.getParameter("lastName");
+        if (!inputText.equals("")); 
+           user.setLastName(inputText);
+           
+        inputText = request.getParameter("email");
+        if (!inputText.equals(""))
+            user.setEmail(inputText);
+        
+        inputText = request.getParameter("addressField_1");
+        if (!inputText.equals("")); 
+           user.setAddressField_1(inputText);
+                   
+        inputText = request.getParameter("addressField_2");
+        if (!inputText.equals("")); 
+           user.setAddressField_2(inputText);       
+            
+        inputText = request.getParameter("city");
+        if (!inputText.equals(""))
+            user.setCity(inputText);
+        
+        inputText = request.getParameter("state");
+        if (!inputText.equals(""))
+            user.setState(inputText);
+        
+        inputText = request.getParameter("postCode");
+        if (!inputText.equals(""))
+            user.setPostCode(inputText);
+        
+        inputText = request.getParameter("country");
+        if (!inputText.equals(""))
+            user.setCountry(inputText);
+        
+        inputText = request.getParameter("password");
+        if (!inputText.equals(""))
+            user.setPassword(inputText);
+    }
     
 }

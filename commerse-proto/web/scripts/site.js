@@ -2,6 +2,6 @@ $( function() {
     
     
     $( "#datepicker" ).datepicker();
-    
+   
     
 } );
