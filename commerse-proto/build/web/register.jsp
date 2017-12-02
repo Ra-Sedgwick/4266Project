@@ -11,7 +11,7 @@
                 <h3 class="loginError">${registerError}</h3>
             </c:if>
             
-            <form action="RegisterController" method="POST">
+            <form action="UserController"  method="POST">
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="firstName"><sup>*</sup>First Name: </label>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <input type="hidden" value="user" />
-                <input type="submit" value="Submit" class="btn btn-success" />
+                <input type="submit" name="action" value="create" class="btn btn-success" />
                 
             </form>
         </section> 

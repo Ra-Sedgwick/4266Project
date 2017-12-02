@@ -20,7 +20,9 @@
                         <th>city</th>
                         <th>State</th>
                         <th>Zip Code</th>
+                        <th>Country</th>
                         <th>Password</th>
+                        <th>Controls</th>
                     </tr>
                     <c:forEach var="user" items="${userList}">
                         <tr>
@@ -34,6 +36,10 @@
                             <td><c:out value="${user.postCode}" /></td>
                             <td><c:out value="${user.country}" /></td>
                             <td><c:out value="${user.password}" /></td>
+                            <th>
+                                <button class="btn btn-xs btn-warning" formaction="edit-user.jsp" value="">Edit</button>
+                                <input type="hidden" value="${user.id}" />
+                            </th>
                         </tr>
 
                     </c:forEach>
