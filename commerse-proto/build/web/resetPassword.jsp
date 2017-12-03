@@ -8,11 +8,10 @@
             <hr>
             <form action="UserController" method="get">
                 
-                
-                <div class="row">
+               <div class="row">
                     <div class="form-group col-sm-5">
-                        <label>Email: </label>
-                        <input type="text" name="userEmail">
+                        <label>Email </label>
+                        <input type="text" name="email">
                     </div>
                 </div>
                 
@@ -22,8 +21,6 @@
                         <input type="text" name="secret">
                     </div>
                 </div>
-                
-                
                 
                 
                 <c:choose>

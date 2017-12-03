@@ -66,11 +66,12 @@ CREATE TABLE UserRole (
 DROP TABLE IF EXISTS UserPass;
 CREATE TABLE userPass (
 	Username varchar(50) NOT NULL PRIMARY KEY,
-    Password varchar(50) NOT NULL
+    Password varchar(50) NOT NULL, 
+    Secret varchar(50) NOT NULL
 );
 
-INSERT INTO UserPass (UserName, Password)
-Values ('johnSmith', 'toor');
+INSERT INTO UserPass (UserName, Password, Secret)
+Values ('johnSmith', 'toor', 'banana');
 
 
 INSERT INTO userRole (userName, roleName)

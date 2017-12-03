@@ -11,6 +11,7 @@
             <input type="text" name="j_password"><br>
             <label>&nbsp;</label>
             <input type="submit" value="Login">
+            <a href="resetPasswordAdmin.jsp" id="password-reset-button"><small>Reset Password</small></a>
         </form>
         </section>
         

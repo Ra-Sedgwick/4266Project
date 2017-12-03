@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.Order;
 import store.business.User;
+import store.data.AdminDB;
 import store.data.OrderDB;
 import store.data.UserDB;
 
@@ -60,7 +61,34 @@ public class AdminController extends HttpServlet {
                 .getRequestDispatcher("/userList.jsp")
                 .forward(request, response);
             
-        } else {
+        } else if (action.equals("reset-password")) {
+            
+            String inputUserName = request.getParameter("userName");
+            String inputSecret = request.getParameter("secret");
+            
+            User user = AdminDB.getUser(inputUserName);
+            
+            if (user != null ) {
+                
+                String userSecret = user.getSecret().toLowerCase();
+                inputSecret = inputSecret.toLowerCase();
+            
+            if (userSecret.equals(inputSecret)) {
+                session.setAttribute("loginError", "Password: " + user.getPassword());
+            } else {
+                session.setAttribute("loginError", "Incorrect secret question answere.");
+            }
+                
+            } else {
+                session.setAttribute("loginError", "Error: User not found");
+            }
+            
+            
+            getServletContext()
+                .getRequestDispatcher("/resetPasswordAdmin.jsp")
+                .forward(request, response);
+            
+        }  else {
             
             getServletContext()
                 .getRequestDispatcher("/admin.jsp")
