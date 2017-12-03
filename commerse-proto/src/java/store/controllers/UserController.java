@@ -41,7 +41,9 @@ public class UserController extends HttpServlet {
             update(request, response, session);
         }
         
-        
+        if (action.equals("reset-password")) {
+            resetPassword(request, response, session);
+        }
     }
 
     /**
@@ -79,6 +81,7 @@ public class UserController extends HttpServlet {
         user.setState(request.getParameter("state"));
         user.setPostCode(request.getParameter("postCode"));
         user.setCountry(request.getParameter("country"));
+        user.setSecret(request.getParameter("secret"));
         user.setPassword(request.getParameter("password"));
         
         
@@ -100,7 +103,7 @@ public class UserController extends HttpServlet {
                 .getRequestDispatcher("/register.jsp")
                 .forward(request, response);
         }
-        else if (validUser(user)) {
+        else if (validUser(user.getEmail())) {
             
             UserDB.insert(user);
             session.setAttribute("theUser", UserDB.getUserByEmail(user.getEmail()));
@@ -122,17 +125,18 @@ public class UserController extends HttpServlet {
         
     }
     
-    private static boolean validUser(User _user) {
+    private static boolean validUser(String userEmail) {
        
-       User user = UserDB.getUserByEmail(_user.getEmail());
+       User user = UserDB.getUserByEmail(userEmail);
        
        if (user != null) {
-           return false;
+           return true;
        }
        
-       return true;
+       return false;
        
    }
+    
     
     public void edit(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
         throws ServletException, IOException { 
@@ -197,11 +201,47 @@ public class UserController extends HttpServlet {
         if (!inputText.isEmpty())
             user.setCountry(inputText);
         
+        inputText = request.getParameter("secret");
+        if (!inputText.isEmpty())
+            user.setSecret(inputText);
+        
         inputText = request.getParameter("password");
         if (!inputText.isEmpty())
             user.setPassword(inputText);
         
         UserDB.updateUser(user);
+        session.setAttribute("theUser", user);
+        
+        getServletContext()
+                .getRequestDispatcher("/user.jsp")
+                .forward(request, response);
     }
     
+    public void resetPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
+        throws ServletException, IOException {
+        
+        String userEmail = request.getParameter("userEmail");
+        
+        if (validUser(userEmail)) {
+            
+            String inputSecret = request.getParameter("secret");
+            User user = UserDB.getUserByEmail(userEmail);
+            
+            String userSecret = user.getSecret().toLowerCase();
+            inputSecret = inputSecret.toLowerCase();
+            
+            if (userSecret.equals(inputSecret)) {
+                session.setAttribute("loginError", "Password: " + user.getPassword());
+            } else {
+                session.setAttribute("loginError", "Incorrect secret question answere.");
+            }
+            
+        } else {
+            session.setAttribute("loginError", "Error: User not found");
+        }
+        
+        getServletContext()
+                .getRequestDispatcher("/resetPassword.jsp")
+                .forward(request, response);
+    }
 }

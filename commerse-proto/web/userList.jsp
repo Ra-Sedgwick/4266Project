@@ -22,6 +22,7 @@
                             <th>State</th>
                             <th>Zip Code</th>
                             <th>Country</th>
+                            <th>Secret</th>
                             <th>Password</th>
                             <th>Controls</th>
                         </tr>
@@ -36,6 +37,7 @@
                                 <td><c:out value="${user.state}" /></td>
                                 <td><c:out value="${user.postCode}" /></td>
                                 <td><c:out value="${user.country}" /></td>
+                                <td><c:out value="${user.secret}" /></td>
                                 <td><c:out value="${user.password}" /></td>
                                 <th>
                                     <input type="hidden" name="userId" value="${user.id}" />

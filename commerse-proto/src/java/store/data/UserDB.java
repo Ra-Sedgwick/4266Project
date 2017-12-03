@@ -27,8 +27,8 @@ public class UserDB {
         
         String query = "INSERT INTO User"
                 + "(LastName, FirstName, Email, Address_1, Address_2, City, "
-                + "State, Postal_Code, Country, Password) "
-                + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "State, Postal_Code, Country, Secrete, Password) "
+                + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         
         try {
@@ -42,7 +42,8 @@ public class UserDB {
             ps.setString(7, user.getState());
             ps.setString(8, user.getPostCode());
             ps.setString(9, user.getCountry());
-            ps.setString(10, user.getPassword());
+            ps.setString(10, user.getSecret());
+            ps.setString(11, user.getPassword());
             
             return ps.executeUpdate();
            
@@ -88,6 +89,7 @@ public class UserDB {
                         user.setState(rs.getString("State"));
                         user.setPostCode(rs.getString("Postal_Code"));
                         user.setCountry(rs.getString("Country"));
+                        user.setSecret(rs.getString("Secret"));
                         user.setPassword(rs.getString("Password"));
                         users.add(user);
                 } while (rs.next());
@@ -131,6 +133,7 @@ public class UserDB {
                 user.setState(rs.getString("State"));
                 user.setPostCode(rs.getString("Postal_Code"));
                 user.setCountry(rs.getString("Country"));
+                user.setSecret(rs.getString("Secret"));
                 user.setPassword(rs.getString("Password"));
             }
             return user;
@@ -170,6 +173,7 @@ public class UserDB {
                 user.setState(rs.getString("State"));
                 user.setPostCode(rs.getString("Postal_Code"));
                 user.setCountry(rs.getString("Country"));
+                user.setSecret(rs.getString("Secret"));
                 user.setPassword(rs.getString("Password"));
             }
             return user;
@@ -193,6 +197,7 @@ public class UserDB {
             String state,
             String postalCode,
             String country,
+            String secret,
             String password
     ) {
         User user = new User();
@@ -205,6 +210,7 @@ public class UserDB {
         user.setState(state);
         user.setPostCode(postalCode);
         user.setCountry(country);
+        user.setSecret(secret);
         user.setPassword(password);
         
         addUser(user);
@@ -216,7 +222,7 @@ public class UserDB {
         PreparedStatement ps = null;
 
         String query
-                = "INSERT INTO User (LastName, FirstName, Email, Address_1, Address_2, City, State, Postal_Code, Country, Password)"
+                = "INSERT INTO User (LastName, FirstName, Email, Address_1, Address_2, City, State, Postal_Code, Country, Secret, Password)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = connection.prepareStatement(query);
@@ -229,7 +235,8 @@ public class UserDB {
             ps.setString(7, user.getState());
             ps.setString(8, user.getPostCode());
             ps.setString(9, user.getCountry());
-            ps.setString(10, user.getPassword());
+            ps.setString(10, user.getSecret());
+            ps.setString(11, user.getPassword());
             return ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -256,6 +263,7 @@ public class UserDB {
                 "State = ?, " +
                 "Postal_Code = ?, " +
                 "Country = ?, " +
+                "Secret = ?, " +
                 "Password = ? " +
                 "WHERE UserID = ?";
         
@@ -271,8 +279,9 @@ public class UserDB {
             ps.setString(7, user.getState());
             ps.setString(8, user.getPostCode());
             ps.setString(9, user.getCountry());
-            ps.setString(10, user.getPassword());
-            ps.setInt(11, user.getId());
+            ps.setString(10, user.getSecret());
+            ps.setString(11, user.getPassword());
+            ps.setInt(12, user.getId());
             
             return ps.executeUpdate();
             

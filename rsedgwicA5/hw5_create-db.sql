@@ -17,6 +17,7 @@ CREATE TABLE User (
   State varchar(50) DEFAULT NULL,
   Postal_Code varchar(50) DEFAULT NULL,
   Country varchar(50) DEFAULT NULL,
+  Secret varchar(100) Default NULL,
   Password varchar(50) NOT NULL,
   PRIMARY KEY (`UserID`)
 );
@@ -86,6 +87,7 @@ INSERT INTO User (
     State,
     Postal_Code,
     Country,
+    Secret,
     Password)
 Values (
 	'Smith',
@@ -97,6 +99,7 @@ Values (
     'North Carolina',
     '55555',
     'USA', 
+    'banana',
     'toor'
 );
 

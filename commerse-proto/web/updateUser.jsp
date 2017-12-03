@@ -74,6 +74,13 @@
                         <input type="text" class="form-control" name="country" id="country" placeholder="${updateUser.country}">
                     </div>
                 </div>
+                    
+                <div class="row">
+                    <div class="form-group col-sm-5">
+                        <label for="secret">Secret Question:<br> What is your favorite fruit? </label>
+                        <input type="text" class="form-control" name="secret" id="secret" placeholder="${updateUser.secret}">
+                    </div>
+                </div>
                 
                 <div class="row">
                     <div class="form-group col-sm-5">

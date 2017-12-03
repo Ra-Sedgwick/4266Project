@@ -142,7 +142,7 @@ table > tbody > tr > td > form > input {
 }
 
 label {
-    width:180px;
+    width:250px;
     clear:left;
     text-align:left;
     padding-right:10px;
@@ -233,4 +233,8 @@ button {
 
 .list-group {
     width: 25%;
+}
+
+#password-reset-button {
+    margin-left: 80px;
 }

@@ -21,10 +21,18 @@ public class User {
     private String postCode;
     private String country;
     private int id;
+    private String secret;
     private String password;
     
     public User() {};
 
+    public void setSecret(String _secret) {
+        secret = _secret;
+    }
+    
+    public String getSecret() {
+        return secret;
+    }
     
     public void setId(int _id) {
         id = _id;

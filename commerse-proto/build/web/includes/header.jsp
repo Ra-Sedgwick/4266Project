@@ -94,8 +94,8 @@
                                 <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>
                                 <a href="#" class="dropdown-toggle btn btn-default nav-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="OrderController?action=viewOrders">Orders</a></li>
-
+                                  <li><a href="OrderController?action=viewOrders">My Orders</a></li>
+                                  <li><a href="user.jsp">My Info</a></li>
                                   <li role="separator" class="divider"></li>
                                   <li><a href="admin.jsp">Admin</a></li>
                                 </ul>
