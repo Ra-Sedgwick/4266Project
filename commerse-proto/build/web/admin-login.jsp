@@ -2,7 +2,7 @@
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
-        <h1>Admin Login</h1><br>
+        <h1>Administrator Login</h1><br>
         <hr>
         <form action="j_security_check" method="get">
             <label>User Name</label>
@@ -10,8 +10,8 @@
             <label>Password</label>
             <input type="text" name="j_password"><br>
             <label>&nbsp;</label>
-            <input type="submit" value="Login">
-            <a href="resetPasswordAdmin.jsp" id="password-reset-button"><small>Reset Password</small></a>
+            <input type="submit" value="Login"><br>
+            <a href="resetPasswordAdmin.jsp" id="reset-admin-password"><small>Reset Password</small></a>
         </form>
         </section>
         

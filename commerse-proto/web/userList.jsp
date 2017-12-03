@@ -39,11 +39,11 @@
                                 <td><c:out value="${user.country}" /></td>
                                 <td><c:out value="${user.secret}" /></td>
                                 <td><c:out value="${user.password}" /></td>
-                                <th>
+                                <td>
                                     <input type="hidden" name="userId" value="${user.id}" />
                                     <button class="btn btn-warning" name="action" formaction="UserController" value="edit">Edit</button>
 
-                                </th>
+                                </td>
                             </tr>
 
                         </c:forEach>

@@ -106,8 +106,12 @@
                     </c:when>
                     <c:otherwise>
                         <form action="./login.jsp">
-                                <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>
-                                <button type="submit" class="btn btn-default nav-button">Sign In</button>
+                                <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>                                
+                                <a href="#" class="dropdown-toggle btn btn-default nav-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign In <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="./login.jsp">Customer</a></li>
+                                  <li><a href="./admin.jsp">Administrator</a></li>
+                                </ul>
 
                         </form>
                     </c:otherwise>

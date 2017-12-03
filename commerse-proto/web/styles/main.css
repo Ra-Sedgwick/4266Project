@@ -238,3 +238,11 @@ button {
 #password-reset-button {
     margin-left: 80px;
 }
+
+#reset-admin-password {
+    margin-left: 22px;
+}
+
+.admin-button {
+    width: 156px;
+}
