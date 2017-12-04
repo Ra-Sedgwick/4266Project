@@ -10,7 +10,8 @@
             <hr>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
-                    <tr>
+                    <form>
+                        <tr>
                         <th>Order Number</th>
                         <th>Customer</th>
                         <th>Order Date</th>
@@ -18,22 +19,23 @@
                         <c:if test="${pageContext.request.isUserInRole('admin')}">
                             <th>Controls</th>
                         </c:if>
-                    </tr>
-                    <c:forEach var="order" items="${orderList}">
-                        <tr>
-                            <td>${order.orderNumber}</td>
-                            <td>${order.user.firstName}</td>
-                            <td>${order.date}</td>
-                            <td>$${order.totalCost}</td>
-                            <c:if test="${pageContext.request.isUserInRole('admin')}">
-                                <td>
-                                    <input type="hidden" name="userId" value="${order.orderNumber}" />
-                                    <button class="btn btn-warning" name="action" formaction="AdminController" value="editOrder">Edit</button>
-                                </td>
-                            </c:if>
                         </tr>
+                        <c:forEach var="order" items="${orderList}">
+                            <tr>
+                                <td>${order.orderNumber}</td>
+                                <td>${order.user.firstName}</td>
+                                <td>${order.date}</td>
+                                <td>$${order.totalCost}</td>
+                                <c:if test="${pageContext.request.isUserInRole('admin')}">
+                                    <td>
+                                        <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
+                                        <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                    </td>
+                                </c:if>
+                            </tr>
 
-                    </c:forEach>
+                        </c:forEach>
+                    </form>
                 </table>
             </div>
             

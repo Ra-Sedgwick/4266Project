@@ -7,7 +7,15 @@ package store.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,16 +34,6 @@ import store.data.UserDB;
 public class AdminController extends HttpServlet {
 
 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,12 +43,8 @@ public class AdminController extends HttpServlet {
         
         if (action.equals("viewOrders")) {
             
-            ArrayList<Order> orders = OrderDB.getOrders();
-            session.setAttribute("orderList", orders);
+            viewOrders(request, response, session);
             
-            getServletContext()
-                .getRequestDispatcher("/orderList.jsp")
-                .forward(request, response);
             
         } else if (action.equals("viewUsers")) {
             
@@ -88,15 +82,89 @@ public class AdminController extends HttpServlet {
                 .getRequestDispatcher("/resetPasswordAdmin.jsp")
                 .forward(request, response);
             
-        }  else {
+        } else if (action.equals("editOrder")) {
+
+            edit(request, response, session);
+
+        } else if (action.equals("update")) {
+            
+            update(request, response, session);
+            
+        } else if (action.equals("signOut")) { 
+
+            session.invalidate();
+            
+            getServletContext()
+                .getRequestDispatcher("/")
+                .forward(request, response);
+
+        } else {
             
             getServletContext()
                 .getRequestDispatcher("/admin.jsp")
                 .forward(request, response);
             
+        }   
+    }
+    
+    public void viewOrders(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        ArrayList<Order> orders = OrderDB.getOrders();
+        session.setAttribute("orderList", orders);
+
+        getServletContext()
+            .getRequestDispatcher("/orderList.jsp")
+            .forward(request, response);
+    }
+
+    public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    
+        Order order = (Order) session.getAttribute("orderToUpdate");
+        String originalOrderNumber = order.getOrderNumber();
+        Date date;
+        String inputText;
+        
+        inputText = request.getParameter("orderNumber");
+        if (!inputText.isEmpty())
+            order.setOrderNumber(inputText);
+        
+        inputText = request.getParameter("userEmail");
+        if (!inputText.isEmpty())
+            order.getUser().setEmail(inputText);
+        
+        inputText = request.getParameter("date");
+        if (!inputText.isEmpty()) {
+            try {
+                date = format.parse(inputText);
+                order.setDate(date);
+            } catch (ParseException ex) {
+                Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
+        inputText = request.getParameter("totalCost");
+        if (!inputText.isEmpty())
+            order.setTotalCost(Double.parseDouble(inputText));
         
+        OrderDB.updateOrder(order, originalOrderNumber);
+        
+        this.viewOrders(request, response, session);
+    }
+    
+    public void edit(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+
+        String id = request.getParameter("updateOrderNumber");
+        Order order = OrderDB.getOrder(id);
+        session.setAttribute("orderToUpdate", order);
+        
+        getServletContext()
+                .getRequestDispatcher("/updateOrder.jsp")
+                .forward(request, response);
     }
 
 
