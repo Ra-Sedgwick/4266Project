@@ -7,7 +7,7 @@
         <jsp:include page="includes/site-navigation.jsp" />
         
         <section>
-            <h1>Order List</h1>
+            <h1>User List</h1>
             <hr>
             <div class="table-responsive">
                 <form>

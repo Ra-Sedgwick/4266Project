@@ -3,6 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+// TODO cannot change user data only user, list user name and email
 package store.controllers;
 
 import java.io.IOException;
@@ -39,72 +42,34 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
+        session.setAttribute("admin", "true");
         String action = request.getParameter("action");
         
-        if (action.equals("viewOrders")) {
-            
+        if (action.equals("viewOrders"))
             viewOrders(request, response, session);
             
             
-        } else if (action.equals("viewUsers")) {
+        if (action.equals("viewUsers")) 
+            viewUsers(request, response, session);
             
-            ArrayList<User> users = UserDB.getAllUsers();
-            session.setAttribute("userList", users);
-            
-            getServletContext()
-                .getRequestDispatcher("/userList.jsp")
-                .forward(request, response);
-            
-        } else if (action.equals("reset-password")) {
-            
-            String inputUserName = request.getParameter("userName");
-            String inputSecret = request.getParameter("secret");
-            
-            User user = AdminDB.getUser(inputUserName);
-            
-            if (user != null ) {
-                
-                String userSecret = user.getSecret().toLowerCase();
-                inputSecret = inputSecret.toLowerCase();
-            
-            if (userSecret.equals(inputSecret)) {
-                session.setAttribute("loginError", "Password: " + user.getPassword());
-            } else {
-                session.setAttribute("loginError", "Incorrect secret question answere.");
-            }
-                
-            } else {
-                session.setAttribute("loginError", "Error: User not found");
-            }
+        if (action.equals("reset-password")) 
+            resetPassword(request, response, session);
             
             
-            getServletContext()
-                .getRequestDispatcher("/resetPasswordAdmin.jsp")
-                .forward(request, response);
-            
-        } else if (action.equals("editOrder")) {
-
+        if (action.equals("editOrder")) 
             edit(request, response, session);
 
-        } else if (action.equals("update")) {
-            
+        if (action.equals("update")) 
             update(request, response, session);
             
-        } else if (action.equals("signOut")) { 
+        if (action.equals("signOut")) 
+            signOut(request, response, session);
+            
 
-            session.invalidate();
-            
-            getServletContext()
-                .getRequestDispatcher("/")
-                .forward(request, response);
-
-        } else {
-            
-            getServletContext()
-                .getRequestDispatcher("/admin.jsp")
-                .forward(request, response);
-            
-        }   
+//        getServletContext()
+//                .getRequestDispatcher("/admin.jsp")
+//                .forward(request, response);   
+//        
     }
     
     public void viewOrders(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -116,6 +81,58 @@ public class AdminController extends HttpServlet {
         getServletContext()
             .getRequestDispatcher("/orderList.jsp")
             .forward(request, response);
+    }
+    
+    public void viewUsers(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        ArrayList<User> users = UserDB.getAllUsers();
+        session.setAttribute("userList", users);
+
+        getServletContext()
+            .getRequestDispatcher("/userList.jsp")
+            .forward(request, response);
+        
+    }
+    
+    public void resetPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        String inputUserName = request.getParameter("userName");
+        String inputSecret = request.getParameter("secret");
+
+        User user = AdminDB.getUser(inputUserName);
+
+        if (user != null ) {
+
+            String userSecret = user.getSecret().toLowerCase();
+            inputSecret = inputSecret.toLowerCase();
+
+        if (userSecret.equals(inputSecret)) {
+            session.setAttribute("loginError", "Password: " + user.getPassword());
+        } else {
+            session.setAttribute("loginError", "Incorrect secret question answere.");
+        }
+
+        } else {
+            session.setAttribute("loginError", "Error: User not found");
+        }
+
+
+        getServletContext()
+            .getRequestDispatcher("/resetPasswordAdmin.jsp")
+            .forward(request, response);
+    }
+    
+    public void signOut(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        session.invalidate();
+            
+            getServletContext()
+                .getRequestDispatcher("/")
+                .forward(request, response);
+        
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -132,9 +149,6 @@ public class AdminController extends HttpServlet {
         if (!inputText.isEmpty())
             order.setOrderNumber(inputText);
         
-        inputText = request.getParameter("userEmail");
-        if (!inputText.isEmpty())
-            order.getUser().setEmail(inputText);
         
         inputText = request.getParameter("date");
         if (!inputText.isEmpty()) {

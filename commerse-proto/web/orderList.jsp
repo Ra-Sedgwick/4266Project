@@ -16,9 +16,8 @@
                         <th>Customer</th>
                         <th>Order Date</th>
                         <th>Total</th>
-                        <c:if test="${pageContext.request.isUserInRole('admin')}">
-                            <th>Controls</th>
-                        </c:if>
+                        <th>Controls</th>
+
                         </tr>
                         <c:forEach var="order" items="${orderList}">
                             <tr>
@@ -26,12 +25,10 @@
                                 <td>${order.user.firstName}</td>
                                 <td>${order.date}</td>
                                 <td>$${order.totalCost}</td>
-                                <c:if test="${pageContext.request.isUserInRole('admin')}">
-                                    <td>
-                                        <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
-                                        <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
-                                    </td>
-                                </c:if>
+                                <td>
+                                    <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
+                                    <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                </td>
                             </tr>
 
                         </c:forEach>

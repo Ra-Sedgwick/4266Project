@@ -219,7 +219,6 @@ public class OrderDB {
         String query = "UPDATE `Order` SET " +
                 "OrderNumber = ?, " +
                 "Date = ?, " +
-                "Email = ?, " +
                 "Total_Cost = ? " +
                 "WHERE OrderNumber = ?";
         
@@ -228,9 +227,8 @@ public class OrderDB {
             ps = connection.prepareStatement(query);
             ps.setString(1, order.getOrderNumber());
             ps.setTimestamp(2, sqlDate);
-            ps.setString(3, order.getUser().getEmail());
-            ps.setDouble(4, order.getTotalCost());
-            ps.setString(5, orderNumber);
+            ps.setDouble(3, order.getTotalCost());
+            ps.setString(4, orderNumber);
 
             
             

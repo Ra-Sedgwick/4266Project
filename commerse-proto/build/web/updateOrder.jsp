@@ -19,13 +19,6 @@
                         <input type="text" class="form-control" name="orderNumber" id="orderNumber" placeholder="${orderToUpdate.orderNumber}">
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="form-group col-sm-5">
-                        <label for="userEmail">User Email </label>
-                        <input type="text" class="form-control" name="userEmail" id="userEmail" placeholder="${orderToUpdate.user.email}">
-                    </div>
-                </div>
                     
                  <div class="row">
                     <div class="form-group col-sm-5">
@@ -34,6 +27,7 @@
                     </div>
                 </div>
                 
+                    
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="totalCost">Total Cost </label>

@@ -27,7 +27,7 @@ public class UserDB {
         
         String query = "INSERT INTO User"
                 + "(LastName, FirstName, Email, Address_1, Address_2, City, "
-                + "State, Postal_Code, Country, Secrete, Password) "
+                + "State, Postal_Code, Country, Secret, Password) "
                 + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         

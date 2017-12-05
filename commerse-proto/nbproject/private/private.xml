@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rased/projects/4166Project/commerse-proto/src/java/store/controllers/LoginController.java</file>
+            <file>file:/C:/Users/rased/projects/4166Project/commerse-proto/src/java/store/data/UserDB.java</file>
+            <file>file:/C:/Users/rased/projects/4166Project/commerse-proto/src/java/store/controllers/AdminController.java</file>
+            <file>file:/C:/Users/rased/projects/4166Project/commerse-proto/src/java/store/data/AdminDB.java</file>
         </group>
     </open-files>
 </project-private>

@@ -105,21 +105,21 @@ public class UserController extends HttpServlet {
         }
         else if (validUser(user.getEmail())) {
             
+            session.setAttribute("registerError", "Email already in use, try again.");
+            
+            getServletContext()
+                .getRequestDispatcher("/register.jsp")
+                .forward(request, response);
+            
+        } else {
+            
             UserDB.insert(user);
             session.setAttribute("theUser", UserDB.getUserByEmail(user.getEmail()));
         
             getServletContext()
                     .getRequestDispatcher("/index.jsp")
                     .forward(request, response);
-        }
-        
-        else {
             
-            session.setAttribute("registerError", "Email already in use, try again.");
-            
-            getServletContext()
-                .getRequestDispatcher("/register.jsp")
-                .forward(request, response);
         }
         
         
@@ -210,10 +210,22 @@ public class UserController extends HttpServlet {
             user.setPassword(inputText);
         
         UserDB.updateUser(user);
-        session.setAttribute("theUser", user);
+        
+        String admin = (String) session.getAttribute("admin");
+        
+        if (admin == null) {
+            
+            session.setAttribute("theUser", user);
+
+            getServletContext()
+                    .getRequestDispatcher("/user.jsp")
+                    .forward(request, response);
+        }
+        
+        session.setAttribute("updateUser", user);
         
         getServletContext()
-                .getRequestDispatcher("/user.jsp")
+                .getRequestDispatcher("/userList.jsp")
                 .forward(request, response);
     }
     
