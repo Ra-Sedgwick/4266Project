@@ -246,3 +246,7 @@ button {
 .admin-button {
     width: 156px;
 }
+.order-edit {
+    width:52px;
+    margin-bottom: 5px
+}

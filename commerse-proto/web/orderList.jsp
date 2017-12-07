@@ -25,11 +25,18 @@
                                 <td>${order.date}</td>
                                 <td>$${order.totalCost}</td>
                                 <td>
-                                    <form>
+                                    <form class="form-inline">
                                         <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
-                                        <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                        <button class="btn btn-primary btn-xs order-edit" name="action" formaction="AdminController" value="editOrder">Edit</button>
                                     </form>
+                                    <c:if test="${pageContext.request.isUserInRole('admin')}">
+                                        <form class="form-inline">
+                                            <input type="hidden" name="deleteId" value="${order.orderNumber}" />
+                                            <button class="btn btn-warning btn-xs order-delete" name="action" formaction="AdminController" value="deleteOrder">Delete</button> 
+                                        </form>
+                                    </c:if>
                                 </td>
+                                
                             </tr>
 
                         </c:forEach>

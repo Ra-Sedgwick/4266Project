@@ -61,6 +61,9 @@ public class AdminController extends HttpServlet {
 
         if (action.equals("update")) 
             update(request, response, session);
+        
+        if (action.equals("deleteOrder"))
+            delete(request, response, session);
             
         if (action.equals("signOut")) 
             signOut(request, response, session);
@@ -135,6 +138,14 @@ public class AdminController extends HttpServlet {
         
     }
 
+    public void delete(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        String deleteId = request.getParameter("deleteId");
+        OrderDB.delete(deleteId);
+        this.viewOrders(request, response, session);
+    }
+    
     public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session)
     throws ServletException, IOException {
         

@@ -243,4 +243,29 @@ public class OrderDB {
         }
     }
     
+    public static int delete(String orderNumber) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        
+        
+        String query = "DELETE FROM `Order` WHERE OrderNumber ='" + orderNumber + "'";
+        
+        try {
+            
+            ps = connection.prepareStatement(query);
+            //ps.setString(1, orderNumber);
+            
+            return ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DbUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
 }
