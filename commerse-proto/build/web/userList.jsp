@@ -44,7 +44,7 @@
                                 <td>
                                     <form>
                                         <input type="hidden" name="userId" value="${user.id}" />
-                                        <button class="btn btn-warning"  name="action" formaction="UserController" value="edit">Edit</button>
+                                        <button class="btn btn-warning btn-xs"  name="action" formaction="UserController" value="edit">Edit</button>
                                     </form>
                                 </td>
                             </tr>

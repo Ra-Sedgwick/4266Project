@@ -35,7 +35,7 @@
                     </div>
                 </div>
                     
-                <input type="submit" name="action" value="update" class="btn btn-success" id="update-user-button"/>
+                <input type="submit" name="action" value="Update" class="btn btn-success" id="update-user-button"/>
             </form>
         </section> 
     </main>

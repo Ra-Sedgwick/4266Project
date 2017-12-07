@@ -6,7 +6,7 @@
         <section>
             <h1>Reset Password</h1>
             <hr>
-            <form action="AdminController" method="get">
+            <form action="UserController" method="get">
                 
                 
                 <div class="row">
@@ -27,9 +27,9 @@
                 
                 
                 <c:choose>
-                    <c:when test="${loginError != null}">
+                    <c:when test="${adminLoginError != null}">
                         <label>&nbsp;</label>
-                        <p class="loginError">${loginError}</p>
+                        <p class="loginError">${adminLoginError}</p>
                     </c:when>
                     <c:otherwise>
                         <label>&nbsp;</label>
@@ -37,7 +37,7 @@
                     </c:otherwise>
                 </c:choose>
                 <label>&nbsp;</label>
-                <button class="btn btn-success" type="submit"  value="reset-password" name="action">Reset</button>
+                <button class="btn btn-success" type="submit"  value="reset-admin-password" name="action">Reset</button>
             </form><p></p>
         </section>
         

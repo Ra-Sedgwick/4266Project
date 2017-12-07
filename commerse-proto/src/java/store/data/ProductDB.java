@@ -186,4 +186,32 @@ public class ProductDB {
             pool.freeConnection(connection);
         }
     }
+    
+    public static int delete(String productCode) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        int pc = Integer.parseInt(productCode);
+        
+
+        String query = "DELETE FROM Product WHERE ProductCode = ?";
+        
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, pc);
+            return ps.executeUpdate();
+            
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DbUtil.closeResultSet(rs);
+            DbUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
 }

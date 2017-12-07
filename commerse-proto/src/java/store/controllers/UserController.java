@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.User;
+import store.data.AdminDB;
 import store.data.UserDB;
 
 /**
@@ -28,6 +29,8 @@ public class UserController extends HttpServlet {
         
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
+        session.removeAttribute("loginError");
+
         
         if (action.equals("create")) {
             create(request, response, session);
@@ -37,12 +40,16 @@ public class UserController extends HttpServlet {
             edit(request, response, session);
         }
         
-        if (action.equals("update")) {
+        if (action.equals("Update")) {
             update(request, response, session);
         }
         
         if (action.equals("reset-password")) {
             resetPassword(request, response, session);
+        }
+        
+        if (action.equals("reset-admin-password")) {
+            resetAdminPassword(request, response, session);
         }
     }
 
@@ -232,7 +239,7 @@ public class UserController extends HttpServlet {
     public void resetPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
         throws ServletException, IOException {
         
-        String userEmail = request.getParameter("userEmail");
+        String userEmail = request.getParameter("email");
         
         if (validUser(userEmail)) {
             
@@ -255,5 +262,34 @@ public class UserController extends HttpServlet {
         getServletContext()
                 .getRequestDispatcher("/resetPassword.jsp")
                 .forward(request, response);
+    }
+    
+    public void resetAdminPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        String inputUserName = request.getParameter("userName");
+        String inputSecret = request.getParameter("secret");
+
+        User user = AdminDB.getUser(inputUserName);
+
+        if (user != null ) {
+
+            String userSecret = user.getSecret().toLowerCase();
+            inputSecret = inputSecret.toLowerCase();
+
+        if (userSecret.equals(inputSecret)) {
+            session.setAttribute("adminLoginError", "Password: " + user.getPassword());
+        } else {
+            session.setAttribute("adminLoginError", "Incorrect secret question answere.");
+        }
+
+        } else {
+            session.setAttribute("adminLoginError", "Error: User not found");
+        }
+
+
+        getServletContext()
+            .getRequestDispatcher("/resetPasswordAdmin.jsp")
+            .forward(request, response);
     }
 }
