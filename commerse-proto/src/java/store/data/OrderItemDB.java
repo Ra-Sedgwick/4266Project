@@ -60,11 +60,12 @@ public class OrderItemDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM Order_Item WHERE Order_Item.OrderNumber = " + orderNumber;
+        String query = "SELECT * FROM Order_Item WHERE Order_Item.OrderNumber = ?";
         
         try {
             ps = connection.prepareStatement(query);
-            rs = ps.executeQuery(query);
+            ps.setString(1, orderNumber);
+            rs = ps.executeQuery();
             
             if (rs.first()) {
                 do {

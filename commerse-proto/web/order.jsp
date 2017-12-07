@@ -5,16 +5,16 @@
         <section class="orderInfo">
             <h2>Invoice</h2>
             <section>
-                <p>${currentOrder.date}</p>
+                <p><c:out value="${currentOrder.date}" /></p>
                 <p>Ship To</p>
-                <p>${currentOrder.user.firstName} ${currentOrder.user.lastName}</p>
-                <p>${currentOrder.user.addressField_1}, ${currentOrder.user.addressField_2}</p>
-                <p>${currentOrder.user.city}, ${currentOrder.user.state} ${currentOrder.user.postCode}</p>
+                <p><c:out value="${currentOrder.user.firstName}" /> <c:out value="${currentOrder.user.lastName}" /></p>
+                <p><c:out value="${currentOrder.user.addressField_1}" />, <c:out value="${currentOrder.user.addressField_2}" /></p>
+                <p><c:out value="${currentOrder.user.city}" />, <c:out value="${currentOrder.user.state}" /> <c:out value="${currentOrder.user.postCode}" /></p>
             </section>
             <section>
-                <p>Sub Total: $${currentOrder.getSubTotal()}</p>
-                <p>Tax      : $${currentOrder.taxRate}</p>
-                <p>Total    : $${currentOrder.getTotalCost()}</p>
+                <p>Sub Total: $<c:out value="${currentOrder.getSubTotal()}" /></p>
+                <p>Tax      : $<c:out value="${currentOrder.taxRate}" /></p>
+                <p>Total    : $<c:out value="${currentOrder.getTotalCost()}" /></p>
             </section>
                 <c:choose>
                     <c:when test="${currentOrder.getIsPaid()}">

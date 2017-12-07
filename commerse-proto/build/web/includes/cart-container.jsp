@@ -12,13 +12,13 @@
             </tr>
             <c:forEach var="item" items="${theShoppingCart.orderItems}" >
                 <tr>
-                    <td>${item.product.productName}</td>
-                    <td>${item.product.price}</td>
+                    <td><c:out value="${item.product.productName}" /></td>
+                    <td><c:out value="${item.product.price}" /></td>
                     <td>
-                        <input type="text" class="form-control table-quantity" name="quantity[]" value="${item.quantity}"  style="text-align: right"/>
-                        <input type="hidden"  name="productList[]" value="${item.product.productCode}" />
+                        <input type="text" class="form-control table-quantity" name="quantity[]" value="<c:out value="${item.quantity}" />"  style="text-align: right"/>
+                        <input type="hidden"  name="productList[]" value="<c:out value="${item.product.productCode}" />" />
                     </td>
-                    <td>${item.getTotal()}</td>
+                    <td><c:out value="${item.getTotal()}" /></td>
                 </tr>
 
             </c:forEach>

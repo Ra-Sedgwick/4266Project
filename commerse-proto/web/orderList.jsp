@@ -15,23 +15,25 @@
                         <th>Customer</th>
                         <th>Order Date</th>
                         <th>Total</th>
-                        <th>Controls</th>
+                        <c:if test="${pageContext.request.isUserInRole('admin')}">
+                                    <th>Controls</th>
+                                </c:if>
 
                         </tr>
                         <c:forEach var="order" items="${orderList}">
                             <tr>
-                                <td>${order.orderNumber}</td>
-                                <td>${order.user.firstName}</td>
-                                <td>${order.date}</td>
-                                <td>$${order.totalCost}</td>
+                                <td><c:out value="${order.orderNumber}" /></td>
+                                <td><c:out value="${order.user.firstName}" /></td>
+                                <td><c:out value="${order.date}" /></td>
+                                <td>$<c:out value="${order.totalCost}" /></td>
                                 <td>
-                                    <form class="form-inline">
-                                        <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
-                                        <button class="btn btn-primary btn-xs order-edit" name="action" formaction="AdminController" value="editOrder">Edit</button>
-                                    </form>
                                     <c:if test="${pageContext.request.isUserInRole('admin')}">
                                         <form class="form-inline">
-                                            <input type="hidden" name="deleteId" value="${order.orderNumber}" />
+                                            <input type="hidden" name="updateOrderNumber" value="<c:out value="${order.orderNumber}" />" />
+                                            <button class="btn btn-primary btn-xs order-edit" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                        </form>
+                                        <form class="form-inline">
+                                            <input type="hidden" name="deleteId" value="<c:out value="${order.orderNumber}" />" />
                                             <button class="btn btn-warning btn-xs order-delete" name="action" formaction="AdminController" value="deleteOrder">Delete</button> 
                                         </form>
                                     </c:if>

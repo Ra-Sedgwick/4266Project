@@ -73,7 +73,7 @@ public class OrderDB {
         
         try {
             ps = connection.prepareStatement(query);
-            rs = ps.executeQuery(query);
+            rs = ps.executeQuery();
             
             if (rs.first()) {
                 do {
@@ -119,11 +119,12 @@ public class OrderDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM `Order` WHERE `Order`.User_ID = " + userID;
+        String query = "SELECT * FROM `Order` WHERE User_ID=?";
         
         try {
             ps = connection.prepareStatement(query);
-            rs = ps.executeQuery(query);
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
             
             if (rs.first()) {
                 do {
@@ -168,12 +169,13 @@ public class OrderDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM `Order` WHERE OrderNumber = '" + orderNumber + "'";
+        String query = "SELECT * FROM `Order` WHERE OrderNumber = ?";
         
         try {
             
             ps = connection.prepareStatement(query);
-            rs = ps.executeQuery(query);
+            ps.setString(1, orderNumber);
+            rs = ps.executeQuery();
             
             if (rs.first()) {
                 do {
@@ -250,12 +252,12 @@ public class OrderDB {
         PreparedStatement ps = null;
         
         
-        String query = "DELETE FROM `Order` WHERE OrderNumber ='" + orderNumber + "'";
+        String query = "DELETE FROM `Order` WHERE OrderNumber = ?";
         
         try {
             
             ps = connection.prepareStatement(query);
-            //ps.setString(1, orderNumber);
+            ps.setString(1, orderNumber);
             
             return ps.executeUpdate();
             

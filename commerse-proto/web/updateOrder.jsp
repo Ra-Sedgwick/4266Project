@@ -16,14 +16,14 @@
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="orderNumber">Order Number </label>
-                        <input type="text" class="form-control" name="orderNumber" id="orderNumber" placeholder="${orderToUpdate.orderNumber}">
+                        <input type="text" class="form-control" name="orderNumber" id="orderNumber" placeholder="<c:out value="${orderToUpdate.orderNumber}" />">
                     </div>
                 </div>
                     
                  <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="date">Date </label>
-                        <input type="text" class="form-control label-offset" name="date" id="datepicker2" placeholder="${orderToUpdate.date}"><br>
+                        <input type="text" class="form-control label-offset" name="date" id="datepicker2" placeholder="<c:out value="${orderToUpdate.date}" />"><br>
                     </div>
                 </div>
                 
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="totalCost">Total Cost </label>
-                        <input type="text" class="form-control" name="totalCost" id="totalCost" placeholder="${orderToUpdate.totalCost}">
+                        <input type="text" class="form-control" name="totalCost" id="totalCost" placeholder="<c:out value="${orderToUpdate.totalCost}" />">
                     </div>
                 </div>
                     

@@ -34,30 +34,7 @@
         <!--    Site Javascript     -->
         <script src="scripts/site.js"> </script>
     </head>
-<!--    <header>
-        <c:choose>
-            <c:when test="${theUser.email != null}">
-                <p id="login-msg">${theUser.email}"</p>
-            </c:when>
-            <c:otherwise>
-                <p id="login-msg">Not logged in...</p>
-            </c:otherwise>
-        </c:choose>
-    </header>-->
-<!--    <nav>
-        <a href="login.jsp">Log In</a>
-        <a href="cart.jsp">Cart</a>
-        <a href="OrderController?action=viewOrders">My Orders</a>
-        <a href="admin.jsp">Admin</a>
-        <c:choose>
-            <c:when test="${theUser.email != null}">
-                <p id="login-msg">${theUser.email}</p>
-            </c:when>
-            <c:otherwise>
-                <p id="login-msg">Not logged in...</p>
-            </c:otherwise>
-        </c:choose>
-    </nav>-->
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -70,9 +47,6 @@
           </button>
             <a class="navbar-brand" href="./">Just Pedals</a>
         </div>
-        
-        
-
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -90,7 +64,7 @@
                         <form action="LoginController">
 
                             <input type="hidden" name="action" value="signOut" />
-                                <span id="user-email">${theUser.email}</span>
+                                <span id="user-email"><c:out value="${theUser.email}" /></span>
                                 <button formaction="cart.jsp" class="btn btn-default nav-button">Cart</button>
                                 <a href="#" class="dropdown-toggle btn btn-default nav-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
