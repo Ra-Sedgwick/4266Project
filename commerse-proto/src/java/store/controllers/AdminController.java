@@ -70,6 +70,7 @@ public class AdminController extends HttpServlet {
         
         if (action.equals("viewProducts"))
             viewProducts(request, response, session);
+         
         
         if (action.equals("deleteProduct"))
             deleteProduct(request, response, session);
@@ -132,7 +133,7 @@ public class AdminController extends HttpServlet {
     throws ServletException, IOException {
         
         List<Product> pp = ProductDB.getAllProducts();
-        
+        String url = "/editProducts.jsp";
         String requestProductCode = request.getParameter("productCode");
         session.setAttribute("products", ProductDB.getAllProducts());
         session.setAttribute("clipless", ProductDB.getByCatagory("clipless"));
@@ -142,14 +143,13 @@ public class AdminController extends HttpServlet {
 
             // Look up product in DB
             Product product = ProductDB.getProduct(requestProductCode);
-            
     
        
         }
 
         // Redirect to catalog
         getServletContext()
-                .getRequestDispatcher("/deleteProduct.jsp")
+                .getRequestDispatcher(url)
                 .forward(request, response);
     }
     

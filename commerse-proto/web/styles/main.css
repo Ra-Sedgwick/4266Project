@@ -254,3 +254,8 @@ button {
 .admin-login {
     width: 200px
 }
+
+.delete-product {
+    width: 42%;
+    margin-bottom: 5px;
+}

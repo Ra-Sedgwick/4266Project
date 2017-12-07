@@ -5,8 +5,11 @@
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
-            <h2>Delete Product</h2>
+            <h2>Product Inventory</h2>
             <hr>
+            <section>
+                <button class="btn btn-success">Create New Product</button
+            </section>
             <section>
                 <h3>Clipless</h3>
                 <ul class="list-group">
