@@ -168,7 +168,7 @@ public class OrderDB {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
-        String query = "SELECT * FROM `Order` WHERE `Order`.OrderNumber = " + orderNumber;
+        String query = "SELECT * FROM `Order` WHERE OrderNumber = '" + orderNumber + "'";
         
         try {
             

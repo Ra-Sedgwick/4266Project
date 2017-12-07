@@ -10,7 +10,6 @@
             <hr>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
-                    <form>
                         <tr>
                         <th>Order Number</th>
                         <th>Customer</th>
@@ -26,13 +25,14 @@
                                 <td>${order.date}</td>
                                 <td>$${order.totalCost}</td>
                                 <td>
-                                    <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
-                                    <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                    <form>
+                                        <input type="hidden" name="updateOrderNumber" value="${order.orderNumber}" />
+                                        <button class="btn btn-warning btn-xs" name="action" formaction="AdminController" value="editOrder">Edit</button>
+                                    </form>
                                 </td>
                             </tr>
 
                         </c:forEach>
-                    </form>
                 </table>
             </div>
             

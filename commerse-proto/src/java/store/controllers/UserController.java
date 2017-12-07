@@ -144,12 +144,10 @@ public class UserController extends HttpServlet {
         String userId = request.getParameter("userId");
         User user;
         
-        if (userId == null) {
-            user = (User) session.getAttribute("theUser");
-        } else {
-            int id = Integer.parseInt(userId);
-            user = UserDB.getUser(id);
-        }
+
+        int id = Integer.parseInt(userId);
+        user = UserDB.getUser(id);
+        
         
         session.setAttribute("updateUser", user);
         
@@ -162,7 +160,9 @@ public class UserController extends HttpServlet {
     public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
         throws ServletException, IOException { 
         
-        User user = (User) session.getAttribute("updateUser" );
+        //User user = (User) session.getAttribute("updateUser" );
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        User user = UserDB.getUser(userId);
         String inputText;
         
         inputText = request.getParameter("firstName");
@@ -225,7 +225,7 @@ public class UserController extends HttpServlet {
         session.setAttribute("updateUser", user);
         
         getServletContext()
-                .getRequestDispatcher("/userList.jsp")
+                .getRequestDispatcher("/AdminController?action=viewUsers")
                 .forward(request, response);
     }
     
