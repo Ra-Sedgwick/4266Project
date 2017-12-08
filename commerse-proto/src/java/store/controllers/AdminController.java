@@ -71,6 +71,14 @@ public class AdminController extends HttpServlet {
         if (action.equals("viewProducts"))
             viewProducts(request, response, session);
          
+        if (action.equals("viewProduct"))
+            viewProduct(request, response, session);
+        
+        if (action.equals("editProduct"))
+            editProduct(request, response, session);
+        
+        if (action.equals("updateProduct"))
+            updateProduct(request,response, session);
         
         if (action.equals("deleteProduct"))
             deleteProduct(request, response, session);
@@ -84,6 +92,49 @@ public class AdminController extends HttpServlet {
         if (action.equals("Create"));
             Create(request, response, session);
       
+    }
+    
+    public void viewProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+         
+         String editId = request.getParameter("editId");
+         Product product = ProductDB.getProduct(editId);
+         session.setAttribute("productToEdit", product);
+         
+         getServletContext()
+                .getRequestDispatcher("/viewProduct.jsp")
+                .forward(request, response);
+     }
+    
+    public void editProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+         Product product = (Product) session.getAttribute("productToEdit");
+         session.setAttribute("productToEdit", product);
+         
+         getServletContext()
+                .getRequestDispatcher("/updateProduct.jsp")
+                .forward(request, response);
+     }
+    
+    public void updateProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+         
+         String editId = request.getParameter("editId");
+         Product product = ProductDB.getProduct(editId);
+         session.setAttribute("productToEdit", product);
+         
+         getServletContext()
+                .getRequestDispatcher("/productEdit.jsp")
+                .forward(request, response);
+     }
+     
+    public void deleteProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    throws ServletException, IOException {
+        
+        String deleteId = request.getParameter("deleteId");
+        ProductDB.delete(deleteId);
+        this.viewProducts(request, response, session);
     }
     
     public void newProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -133,7 +184,7 @@ public class AdminController extends HttpServlet {
     throws ServletException, IOException {
         
         List<Product> pp = ProductDB.getAllProducts();
-        String url = "/editProducts.jsp";
+        String url = "/viewProducts.jsp";
         String requestProductCode = request.getParameter("productCode");
         session.setAttribute("products", ProductDB.getAllProducts());
         session.setAttribute("clipless", ProductDB.getByCatagory("clipless"));
@@ -226,13 +277,7 @@ public class AdminController extends HttpServlet {
     }
     
     
-    public void deleteProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
-    throws ServletException, IOException {
-        
-        String deleteId = request.getParameter("deleteId");
-        ProductDB.delete(deleteId);
-        this.viewProducts(request, response, session);
-    }
+    
     
     
     public void update(HttpServletRequest request, HttpServletResponse response, HttpSession session)

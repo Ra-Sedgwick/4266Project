@@ -16,8 +16,8 @@
                     <c:forEach var="c" items="${clipless}">
                         <li>
                             <form action="AdminController">
-                                <input type="hidden" name="deleteId" value="${c.getProductCode()}" />
-                                <button class="btn btn-info btn-sm delete-product" name="action" value="deleteProduct"><c:out value="${c.getProductName()}" /></button>
+                                <input type="hidden" name="editId" value="${c.getProductCode()}" />
+                                <button class="btn btn-info btn-sm delete-product" name="action" value="viewProduct"><c:out value="${c.getProductName()}" /></button>
                             </form>
                         </li>
                     </c:forEach>
@@ -30,8 +30,8 @@
                         
                         <li>
                             <form action="AdminController">
-                                <input type="hidden" name="deleteId" value="${p.getProductCode()}" />
-                                <button class="btn btn-info btn-sm delete-product" name="action" value="deleteProduct"><c:out value="${p.getProductName()}" /></button>
+                                <input type="hidden" name="editId" value="${p.getProductCode()}" />
+                                <button class="btn btn-info btn-sm delete-product" name="action" value="viewProduct"><c:out value="${p.getProductName()}" /></button>
                             </form>
                         </li>
                         

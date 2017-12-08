@@ -9,7 +9,7 @@
             <hr>
             <form>
                 <div class="form-group">
-                    <button class="btn btn-success admin-button" name="action" formaction="AdminController" value="editProducts">Product Inventory</button>
+                    <button class="btn btn-success admin-button" name="action" formaction="AdminController" value="viewProducts">Product Inventory</button>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success admin-button" name="action" formaction="AdminController" value="newProduct">Create Product</button>
