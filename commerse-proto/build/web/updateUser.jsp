@@ -82,12 +82,6 @@
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="form-group col-sm-5">
-                        <label for="password"><sup>*</sup>Password: </label>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="<c:out value="${updateUser.password}" />">
-                    </div>
-                </div>
                 <input type="hidden" name="userId" value="<c:out value="${updateUser.id}" />"/>
                 <input type="submit" name="action" value="Update" class="btn btn-success" id="update-user-button"/>
                 

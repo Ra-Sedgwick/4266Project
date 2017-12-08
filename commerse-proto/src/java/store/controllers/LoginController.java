@@ -7,12 +7,16 @@ package store.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.User;
+import store.data.PasswordUtil;
 import store.data.UserDB;
 
 /**
@@ -52,8 +56,6 @@ public class LoginController extends HttpServlet {
         }
         else {
             
-           
-            
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
@@ -72,6 +74,13 @@ public class LoginController extends HttpServlet {
 
                 }
 
+                // Get Users Salt and Re-hash password
+                try {
+                    String salt = UserDB.getUserSalt(user);
+                    password = PasswordUtil.hashPassword(password + salt);
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 if (password.equals(user.getPassword())) {
 

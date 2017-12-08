@@ -46,7 +46,6 @@ public class OrderController extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-
         String[] str_quantity;
         String[] productList;
         

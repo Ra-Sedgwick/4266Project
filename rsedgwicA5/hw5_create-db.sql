@@ -18,7 +18,8 @@ CREATE TABLE User (
   Postal_Code varchar(50) DEFAULT NULL,
   Country varchar(50) DEFAULT NULL,
   Secret varchar(100) Default NULL,
-  Password varchar(50) NOT NULL,
+  Password varchar(200) NOT NULL,
+  Salt varchar(200) NOT NULL,
   PRIMARY KEY (`UserID`)
 );
 
@@ -89,7 +90,8 @@ INSERT INTO User (
     Postal_Code,
     Country,
     Secret,
-    Password)
+    Password, 
+    Salt)
 Values (
 	'Smith',
     'John',
@@ -101,7 +103,8 @@ Values (
     '55555',
     'USA', 
     'banana',
-    'toor'
+    '79f83721d168bc90a777d2e10f623f7bc1fc1b1bd5918da7881c4bef2fabb613', 
+    'salt'
 );
 
 

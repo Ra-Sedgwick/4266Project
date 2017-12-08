@@ -18,7 +18,35 @@ import store.business.User;
  */
 public class UserDB {
     
-    public static int insert(User user) {
+    public static String getUserSalt(User user) {
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String query = "Select Salt FROM USER WHERE UserId = ? ";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, user.getId());
+            rs = ps.executeQuery();
+            rs.first();
+            
+            String salt =  rs.getString("Salt");
+           
+            return salt;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        } finally {
+            DbUtil.closeResultSet(rs);
+            DbUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
+    public static int insert(User user, String salt) {
         
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -27,8 +55,8 @@ public class UserDB {
         
         String query = "INSERT INTO User"
                 + "(LastName, FirstName, Email, Address_1, Address_2, City, "
-                + "State, Postal_Code, Country, Secret, Password) "
-                + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "State, Postal_Code, Country, Secret, Password, Salt) "
+                + "Values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         
         try {
@@ -44,6 +72,7 @@ public class UserDB {
             ps.setString(9, user.getCountry());
             ps.setString(10, user.getSecret());
             ps.setString(11, user.getPassword());
+            ps.setString(12, salt);
             
             return ps.executeUpdate();
            

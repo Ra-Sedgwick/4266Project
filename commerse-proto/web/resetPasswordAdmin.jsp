@@ -4,10 +4,9 @@
     <main>
         <jsp:include page="includes/site-navigation.jsp" />
         <section>
-            <h1>Reset Password</h1>
+            <h1>Recover Password</h1>
             <hr>
             <form action="UserController" method="get">
-                
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
@@ -23,9 +22,6 @@
                     </div>
                 </div>
                 
-                
-                
-                
                 <c:choose>
                     <c:when test="${adminLoginError != null}">
                         <label>&nbsp;</label>
@@ -36,6 +32,7 @@
                         <p id="loginError"></p>
                     </c:otherwise>
                 </c:choose>
+                        
                 <label>&nbsp;</label>
                 <button class="btn btn-success" type="submit"  value="reset-admin-password" name="action">Reset</button>
             </form><p></p>

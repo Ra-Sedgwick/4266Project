@@ -7,18 +7,16 @@
         <section>
             <h2>Your Cart</h2>
             <hr>
-                   <form action="OrderController?action=updateCart" method="post">
+            <form action="OrderController?action=updateCart" method="post">
+                <jsp:include page="includes/cart-container.jsp" />
+                <section class="button-group">
+                    <button type="submit" class="btn btn-primary">Update Cart</button>
+                    <button type="submit" class="btn btn-success" formaction="OrderController?action=checkout">Check Out</button>
+                    <c:if test="${checkoutError != null}">
+                        <p id="checkoutError">Error: Please sign in to complete transaction.</p> 
 
-            <jsp:include page="includes/cart-container.jsp" />
-            <section class="button-group">
-                <button type="submit" class="btn btn-primary">Update Cart</button>
-                <button type="submit" class="btn btn-success" formaction="OrderController?action=checkout">Check Out</button>
-                <c:if test="${checkoutError != null}">
-                    <p id="checkoutError">Error: Please sign in to complete transaction.</p> 
-                   
-                </c:if>
-            </section>
-                   
+                    </c:if>
+                </section>
             </form>
         </section>
         

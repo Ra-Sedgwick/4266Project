@@ -7,6 +7,9 @@ package store.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import store.business.User;
 import store.data.AdminDB;
+import store.data.PasswordUtil;
 import store.data.UserDB;
 
 /**
@@ -33,7 +37,11 @@ public class UserController extends HttpServlet {
 
         
         if (action.equals("create")) {
-            create(request, response, session);
+            try {
+                create(request, response, session);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (action.equals("edit")) {
@@ -45,7 +53,11 @@ public class UserController extends HttpServlet {
         }
         
         if (action.equals("reset-password")) {
-            resetPassword(request, response, session);
+            try {
+                resetPassword(request, response, session);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         if (action.equals("reset-admin-password")) {
@@ -73,7 +85,7 @@ public class UserController extends HttpServlet {
     }// </editor-fold>
 
     public void create(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
-        throws ServletException, IOException {
+        throws ServletException, IOException, NoSuchAlgorithmException {
         
         session.removeAttribute("registerError");
         User user = new User();
@@ -120,7 +132,12 @@ public class UserController extends HttpServlet {
             
         } else {
             
-            UserDB.insert(user);
+            // Encrpyte passowrd
+            String salt = PasswordUtil.getSalt();
+            String encryptedPW = PasswordUtil.hashPassword(user.getPassword() + salt);
+            user.setPassword(encryptedPW);
+            
+            UserDB.insert(user, salt);
             session.setAttribute("theUser", UserDB.getUserByEmail(user.getEmail()));
         
             getServletContext()
@@ -212,9 +229,6 @@ public class UserController extends HttpServlet {
         if (!inputText.isEmpty())
             user.setSecret(inputText);
         
-        inputText = request.getParameter("password");
-        if (!inputText.isEmpty())
-            user.setPassword(inputText);
         
         UserDB.updateUser(user);
         
@@ -237,10 +251,10 @@ public class UserController extends HttpServlet {
     }
     
     public void resetPassword(HttpServletRequest request, HttpServletResponse response, HttpSession session) 
-        throws ServletException, IOException {
+        throws ServletException, IOException, NoSuchAlgorithmException {
         
         String userEmail = request.getParameter("email");
-        
+        session.removeAttribute("loginError");
         if (validUser(userEmail)) {
             
             String inputSecret = request.getParameter("secret");
@@ -250,7 +264,21 @@ public class UserController extends HttpServlet {
             inputSecret = inputSecret.toLowerCase();
             
             if (userSecret.equals(inputSecret)) {
-                session.setAttribute("loginError", "Password: " + user.getPassword());
+                
+                String newPassword = request.getParameter("newPassword");
+                String salt = UserDB.getUserSalt(user);
+                newPassword = PasswordUtil.hashPassword(newPassword + salt);
+                
+                user.setPassword(newPassword);
+                
+                UserDB.updateUser(user);
+                
+                session.setAttribute("loginError", "Password Reset");
+                
+                getServletContext()
+                    .getRequestDispatcher("/login.jsp")
+                    .forward(request, response);
+                
             } else {
                 session.setAttribute("loginError", "Incorrect secret question answere.");
             }

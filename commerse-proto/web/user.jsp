@@ -23,7 +23,6 @@
                             <th>Zip Code</th>
                             <th>Country</th>
                             <th>Secret</th>
-                            <th>Password</th>
                             <th>Controls</th>
                         </tr>
                         <tr>
@@ -37,7 +36,6 @@
                             <td><c:out value="${theUser.postCode}" /></td>
                             <td><c:out value="${theUser.country}" /></td>
                             <td><c:out value="${theUser.secret}" /></td>
-                            <td><c:out value="${theUser.password}" /></td>
                             <th>
                                 <input type="hidden" name="userId" value="${theUser.id}" />
                                 <button class="btn btn-xs btn-warning" name="action" formaction="UserController" value="edit">Edit</button>

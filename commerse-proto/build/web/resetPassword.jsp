@@ -22,6 +22,13 @@
                     </div>
                 </div>
                 
+                <div class="row">
+                    <div class="form-group col-sm-5">
+                        <label>New Password: </label>
+                        <input type="password" name="newPassword">
+                    </div>
+                </div>
+                
                 
                 <c:choose>
                     <c:when test="${loginError != null}">

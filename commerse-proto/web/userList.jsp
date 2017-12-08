@@ -23,8 +23,6 @@
                             <th>Zip Code</th>
                             <th>Country</th>
                             <th>Secret</th>
-                            <th>Password</th>
-                            <th>Id</th>
                             <th>Controls</th>
                         </tr>
                         <c:forEach var="user" items="${userList}">
@@ -39,8 +37,6 @@
                                 <td><c:out value="${user.postCode}" /></td>
                                 <td><c:out value="${user.country}" /></td>
                                 <td><c:out value="${user.secret}" /></td>
-                                <td><c:out value="${user.password}" /></td>
-                                <th>${user.id}</td>
                                 <td>
                                     <form>
                                         <input type="hidden" name="userId" value="${user.id}" />

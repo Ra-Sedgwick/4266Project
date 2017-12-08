@@ -14,7 +14,6 @@
                     
                 </figcaption>
             </figure>
-                    
                     <section id="item-buttons">
                         <form>                        <form action="catalog.jsp">
                             <button class="btn btn-primary" type="submit">Back</button>
@@ -26,9 +25,6 @@
                             <button id="add-button" class="btn btn-success" type="submit">Add</button>
                         </form>
                     </section>
-            
-            
-            
         </section>
     </main>
 

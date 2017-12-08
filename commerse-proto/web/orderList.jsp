@@ -11,14 +11,13 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                         <tr>
-                        <th>Order Number</th>
-                        <th>Customer</th>
-                        <th>Order Date</th>
-                        <th>Total</th>
-                        <c:if test="${pageContext.request.isUserInRole('admin')}">
-                                    <th>Controls</th>
-                                </c:if>
-
+                            <th>Order Number</th>
+                            <th>Customer</th>
+                            <th>Order Date</th>
+                            <th>Total</th>
+                            <c:if test="${pageContext.request.isUserInRole('admin')}">
+                                <th>Controls</th>
+                            </c:if>
                         </tr>
                         <c:forEach var="order" items="${orderList}">
                             <tr>
@@ -38,15 +37,12 @@
                                         </form>
                                     </c:if>
                                 </td>
-                                
                             </tr>
-
                         </c:forEach>
                 </table>
-            </div>
-            
+            </div> 
         </section>
-
+        
     </main>
             
 <jsp:include page="includes/footer.jsp" />

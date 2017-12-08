@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Rsedgwic</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,14 +50,8 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            
-            <ul class="nav navbar-nav">
-                
-            </ul>
-            
+            <ul class="nav navbar-nav"></ul>
             <ul class="nav navbar-nav pull-right">
-       
-                
                 <li>
                 <c:choose>
                     <c:when test="${theUser.email != null}">

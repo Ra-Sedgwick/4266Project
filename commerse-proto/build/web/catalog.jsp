@@ -19,7 +19,7 @@
                 <h3>Platform</h3>
                 <ul class="list-group">
                     <c:forEach var="p" items="${platform}">
-                        <li><a class="btn btn-info delete-product href="catalog?productCode=<c:out value="${p.getProductCode()}" />" class="list-group-item"><c:out value="${p.getProductName()}" /> </a></li>
+                        <li><a class="btn btn-info delete-product" href="catalog?productCode=<c:out value="${p.getProductCode()}" />" class="list-group-item"><c:out value="${p.getProductName()}" /> </a></li>
                     </c:forEach>
                 </ul>
             </section>

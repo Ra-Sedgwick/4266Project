@@ -210,11 +210,7 @@ public class AdminController extends HttpServlet {
         session.setAttribute("platform", ProductDB.getByCatagory("platform"));
 
         if (requestProductCode != null) {
-
-            // Look up product in DB
             Product product = ProductDB.getProduct(requestProductCode);
-    
-       
         }
 
         // Redirect to catalog
