@@ -8,7 +8,9 @@
             <h2>Product Inventory</h2>
             <hr>
             <section>
-                <button class="btn btn-success">Create New Product</button
+                <form action="createProduct.jsp">
+                    <button  class="btn btn-success">Create New Product</button
+                </form>
             </section>
             <section>
                 <h3>Clipless</h3>

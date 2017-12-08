@@ -119,21 +119,42 @@ public class AdminController extends HttpServlet {
     
     public void updateProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
     throws ServletException, IOException {
+        
+         Product product = (Product) session.getAttribute("productToEdit");
+         String updateText;
          
-         String editId = request.getParameter("editId");
-         Product product = ProductDB.getProduct(editId);
-         session.setAttribute("productToEdit", product);
+         updateText = request.getParameter("productName");
+         if (!updateText.equals(""))
+             product.setProductName(updateText);
+         
+         updateText = request.getParameter("catalogCategory");
+         if (!updateText.equals(""))
+             product.setCatalogCategory(updateText);
+         
+         updateText = request.getParameter("description");
+         if (!updateText.equals(""))
+             product.setDescription(updateText);
+         
+         updateText = request.getParameter("price");
+         if (!updateText.equals("")) 
+             product.setPrice(Double.parseDouble(updateText));
+         
+         updateText = request.getParameter("imageURL");
+         if (!updateText.equals("")) 
+             product.setPrice(Double.parseDouble(updateText));
+         
+         ProductDB.update(product);
          
          getServletContext()
-                .getRequestDispatcher("/productEdit.jsp")
+                .getRequestDispatcher("/AdminController?action=viewProducts")
                 .forward(request, response);
      }
      
     public void deleteProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session)
     throws ServletException, IOException {
         
-        String deleteId = request.getParameter("deleteId");
-        ProductDB.delete(deleteId);
+        Product product = (Product) session.getAttribute("productToEdit");
+        ProductDB.delete(product);
         this.viewProducts(request, response, session);
     }
     
@@ -174,9 +195,7 @@ public class AdminController extends HttpServlet {
             product.setPrice(Integer.parseInt(price));
             ProductDB.addProduct(product);
             
-            getServletContext()
-                .getRequestDispatcher("/admin.jsp")
-                .forward(request, response);
+            viewProducts(request, response, session);
         }
     }
     

@@ -104,6 +104,39 @@ public class ProductDB {
         }
     }
     
+    public static int update(Product product) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+
+        String query = "UPDATE Product SET " +
+                "Name = ?, " +
+                "CatelogCategory = ?, " +
+                "Description = ?, " +
+                "Price = ?, " +
+                "ImageURL = ? " +
+                "WHERE ProductCode = ?";
+        
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, product.getProductName());
+            ps.setString(2, product.getCatalogCategory());
+            ps.setString(3, product.getDescription());
+            ps.setDouble(4, product.getPrice());
+            ps.setString(5, product.getImageURL());
+            ps.setInt(6, product.getProductCode());
+            
+            return ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+            return 0;
+        } finally {
+            DbUtil.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+    }
+    
     public static ArrayList<Product> getByCatagory(String catagory) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -187,13 +220,11 @@ public class ProductDB {
         }
     }
     
-    public static int delete(String productCode) {
+    public static int delete(Product product) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
-        int pc = Integer.parseInt(productCode);
         
 
         String query = "DELETE FROM Product WHERE ProductCode = ?";
@@ -201,7 +232,7 @@ public class ProductDB {
         
         try {
             ps = connection.prepareStatement(query);
-            ps.setInt(1, pc);
+            ps.setInt(1, product.getProductCode());
             return ps.executeUpdate();
             
            
