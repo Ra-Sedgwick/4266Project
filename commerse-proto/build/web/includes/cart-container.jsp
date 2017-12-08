@@ -8,7 +8,6 @@
                 <th class="table-width">Item</th>
                 <th class="table-width">Price</th>
                 <th class="table-width">Quantity</th>
-                <th class="table-width">Total</th>
             </tr>
             <c:forEach var="item" items="${theShoppingCart.orderItems}" >
                 <tr>
@@ -18,11 +17,14 @@
                         <input type="text" class="form-control table-quantity" name="quantity[]" value="<c:out value="${item.quantity}" />"  style="text-align: right"/>
                         <input type="hidden"  name="productList[]" value="<c:out value="${item.product.productCode}" />" />
                     </td>
-                    <td><c:out value="${item.getTotal()}" /></td>
-                </tr>
 
+                </tr>
+                
             </c:forEach>
-        </table>         
+        </table>       
+        
     </div>
     
+        
+
 </div>   

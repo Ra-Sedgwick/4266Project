@@ -25,7 +25,7 @@
                 <button class="btn btn-success" type="submit"  value="authenticate" name="action">Submit</button>
                 <button class="btn btn-warning" type="submit" value="register" name="action">Register </button>
             </form><p></p>
-            <a href="resetPassword.jsp" id="password-reset-button"><small>Reset Password</small></a>
+            <a href="resetPassword.jsp" id="password-reset-button"><small>Forgot Password?</small></a>
         </section>
         
     </main>

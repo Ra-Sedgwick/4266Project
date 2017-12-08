@@ -70,8 +70,6 @@
                                 <ul class="dropdown-menu">
                                   <li><a href="OrderController?action=viewOrders">My Orders</a></li>
                                   <li><a href="user.jsp">My Info</a></li>
-                                  <li role="separator" class="divider"></li>
-                                  <li><a href="admin.jsp">Admin</a></li>
                                 </ul>
                                 <button type="submit" class="btn btn-default nav-button">Sign Out</button>
 

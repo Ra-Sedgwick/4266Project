@@ -9,7 +9,7 @@
             <hr>
             <section>
                 <form action="createProduct.jsp">
-                    <button  class="btn btn-success">Create New Product</button
+                    <button  class="btn btn-success">Create New Product</button>
                 </form>
             </section>
             <section>
