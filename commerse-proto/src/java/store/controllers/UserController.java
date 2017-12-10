@@ -265,6 +265,7 @@ public class UserController extends HttpServlet {
             
             if (userSecret.equals(inputSecret)) {
                 
+                // Get and apply users salt before hashing
                 String newPassword = request.getParameter("newPassword");
                 String salt = UserDB.getUserSalt(user);
                 newPassword = PasswordUtil.hashPassword(newPassword + salt);

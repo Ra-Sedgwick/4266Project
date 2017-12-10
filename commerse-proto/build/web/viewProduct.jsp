@@ -10,7 +10,7 @@
                 <img src=<c:out value="${productToEdit.getImageURL()}" /> style='height:200px'>
                 <figcaption>
                     <h3><c:out value="${productToEdit.getProductName()}" />: <c:out value="${productToEdit.getPriceCurrencyFormat()}" /></h3>
-                    <p><c:out value="${productToEdit.getDescription()}" /></p>
+                    <p><c:out value="${productToEdit.description}" /></p>
                     
                 </figcaption>
             </figure>

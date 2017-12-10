@@ -174,6 +174,7 @@ public class AdminController extends HttpServlet {
         
         product.setProductName(request.getParameter("productName"));
         product.setCatalogCategory(request.getParameter("category").toLowerCase());
+        product.setDescription(request.getParameter("description"));
         String price = request.getParameter("price");
         product.setImageURL("images/NoImage.png");
         
